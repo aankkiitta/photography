@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@400;500;600&display=swap');
+
+/* ==================== ABOUT SECTION ==================== */
+.about-section {
+  display: flex;
+  flex-direction: row; 
+  width: 100%;
+  min-height: 100vh; 
+  background-color: #1A1D1A; 
+  margin: 0;
+  padding: 0;
+  align-items: center; 
+  overflow: hidden; /* Image bahar nahi niklegi */
+}
+
+/* ==================== TEXT CONTENT (LEFT SIDE) ==================== */
+.about-content-wrapper {
+  flex: 1; 
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
+  padding: 80px 40px 80px 8vw; 
+  order: 1; /* Text left */
+}
+
+.about-text {
+  max-width: 550px;
+}
+
+.about-subtitle {
+  color: #C09B6E; 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.about-title {
+  color: #FFFFFF;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(36px, 3.5vw, 50px);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+
+.about-title-highlight {
+  font-style: italic;
+  color: #C09B6E;
+}
+
+.about-description {
+  color: #A0AAB2; 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.about-btn {
+  margin-top: 20px;
+  background-color: transparent;
+  color: #C09B6E;
+  border: 1px solid #C09B6E;
+  padding: 14px 32px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.about-btn:hover {
+  background-color: #C09B6E;
+  color: #1A1D1A;
+}
+
+/* ==================== IMAGE CONTENT (RIGHT SIDE) ==================== */
+.about-image-wrapper {
+  flex: 1; 
+  width: 50%;
+  display: flex;
+  justify-content: flex-end; /* Force right edge */
+  align-items: center;
+  padding: 0; 
+  margin: 0;  
+  order: 2; /* Image right */
+  overflow: hidden;
+}
+
+/* THE MAGIC FIX: Zoom aur stretch karke transparent gap cut karna */
+.about-transparent-img {
+  width: 100%;
+  height: 100vh; /* Height full screen */
+  object-fit: cover; /* Image ko stretch karega bina aspect ratio bigade */
+  
+  /* YEH LINE IMAGE KE ANDAR KI TRANSPARENT JAGAH KO CUT KAREGI */
+  object-position: right center; 
+  
+  /* Thoda sa scale badhaya taaki right edge se touch ho */
+  transform: scale(1.05) translateX(2%); 
+  
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+@media (max-width: 900px) {
+  .about-section {
+    flex-direction: column; 
+    padding: 0 0 20px 0; /* 100px se 20px kar diya taaki gap kam ho */
+    min-height: auto;
+  }
+
+  .about-image-wrapper {
+    width: 100%;
+    justify-content: center; 
+    margin: 0;
+    padding: 0;
+    order: 1; 
+  }
+
+  .about-transparent-img {
+    width: 100%;
+    height: 55vh;
+    object-fit: cover;
+    object-position: top center;
+    transform: none; 
+  }
+
+  .about-content-wrapper {
+    width: 100%;
+    padding: 30px 20px 0 20px;
+    justify-content: center;
+    text-align: center; 
+    order: 2; 
+  }
+
+  .about-text {
+    max-width: 100%;
+  }
+
+  .about-title {
+    font-size: 32px;
+  }
+  
+  /* Button ka gap adjust kiya */
+  .about-btn {
+    margin-bottom: 10px; 
+  }
+}

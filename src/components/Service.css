@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+/* ==================== SERVICE SECTION WRAPPER ==================== */
+.service-section {
+  width: 100%;
+  background-color: #FFFFFF; 
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==================== HEADER ==================== */
+.service-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.service-title {
+  color: #1A1D1A; 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.service-line {
+  width: 60px;
+  height: 2px;
+  background-color: #C0CAAD; 
+  margin: 0 auto;
+}
+
+/* ==================== GRID LAYOUT ==================== */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 30px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+/* ==================== CARD STYLING ==================== */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.service-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5; 
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.service-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover .service-img {
+  transform: scale(1.08);
+}
+
+/* ==================== HOVER OVERLAY ==================== */
+.service-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 29, 26, 0.75); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; 
+  transition: opacity 0.4s ease;
+  border: 2px solid #C0CAAD;
+  box-sizing: border-box;
+}
+
+.service-card:hover .service-overlay {
+  opacity: 1; 
+}
+
+.service-view-text {
+  color: #C0CAAD;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transform: translateY(10px);
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover .service-view-text {
+  transform: translateY(0);
+}
+
+/* ==================== TITLE BOX ==================== */
+.service-title-box {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.service-category-title {
+  color: #1A1D1A; 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+}
+
+.service-underline {
+  width: 40px;
+  height: 1.5px;
+  background-color: #C0CAAD;
+  margin: 0 auto;
+  transition: width 0.3s ease;
+}
+
+.service-card:hover .service-underline {
+  width: 60px;
+}
+
+/* ==================== LOAD MORE BUTTON ==================== */
+.service-load-wrapper {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.service-load-btn {
+  background-color: transparent; 
+  color: #C0CAAD; 
+  border: 2px solid #C0CAAD; 
+  padding: 14px 50px; 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px; 
+  font-weight: 700; 
+  letter-spacing: 1px; 
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0px; 
+}
+
+.service-load-btn:hover {
+  background-color: #C0CAAD; 
+  color: #1A1D1A; 
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 40px;
+  }
+}
+
+/* ==================== MOBILE FIX ==================== */
+@media (hover: none) {
+  .service-overlay.active-mobile {
+    opacity: 1 !important;
+  }
+  .service-card:hover .service-img {
+    transform: scale(1); 
+  }
+  .service-card:hover .service-overlay:not(.active-mobile) {
+    opacity: 0 !important; 
+  }
+}
+
+@media (max-width: 600px) {
+  .service-section {
+    padding: 50px 20px;
+  }
+  
+  .service-grid {
+    grid-template-columns: 1fr; 
+    gap: 40px;
+  }
+
+  .service-title {
+    font-size: 24px;
+  }
+
+  .service-category-title {
+    font-size: 14px;
+  }
+
+  .service-load-wrapper {
+    margin-top: 40px;
+    padding: 0 20px;
+  }
+  
+  .service-load-btn {
+    width: 100%;
+    max-width: 300px;
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+}

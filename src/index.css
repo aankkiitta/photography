@@ -1,0 +1,13 @@
+/* Global CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff; /* White background */
+  color: #1A1D1A; /* Default dark text */
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden; /* Prevents horizontal scroll from animations */
+}

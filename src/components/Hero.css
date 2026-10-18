@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@400;500;600&display=swap');
+
+/* ==================== MAIN WRAPPER ==================== */
+.hero-combined-section {
+  position: relative;
+  width: 100%;
+  height: 200vh; /* 2 Screens ki height (Scroll ke liye) */
+  background-color: #000; 
+}
+
+/* ==================== 1. FIXED VIDEO BACKGROUND ==================== */
+.hero-video-bg {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0; /* Sabse peeche */
+}
+
+.bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Video par halka andhera */
+}
+
+/* ==================== 2. STICKY IMAGE (Parda) ==================== */
+.hero-sticky-bg {
+  position: absolute; /* Video ke upar */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2; 
+  overflow: hidden;
+  transition: clip-path 0.05s linear; 
+}
+
+.hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out; 
+}
+
+.hero-bg-image.active {
+  opacity: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.6) 0%,   
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.8) 100%  
+  );
+}
+
+/* ==================== 3. SCROLLING TEXT ==================== */
+.hero-scroll-content {
+  position: absolute; 
+  top: 0; 
+  left: 0;
+  z-index: 5; 
+  width: 100%;
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; 
+  padding-bottom: 15vh; 
+  pointer-events: none;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  pointer-events: auto;
+}
+
+.hero-subtitle {
+  color: #FFFFFF; 
+  font-family: 'Playfair Display', Georgia, serif; 
+  font-size: clamp(18px, 2.5vw, 32px); 
+  letter-spacing: 1px; 
+  margin: 0 auto 15px auto; 
+  font-weight: 700;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+}
+
+/* Golden text */
+.hero-title {
+  color: #C09B6E; 
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(16px, 2vw, 24px); 
+  font-weight: 600;
+  letter-spacing: 3px;
+  line-height: 1.4;
+  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.8); 
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.desktop-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10; 
+  background: transparent; 
+  color: #FFFFFF;
+  border: none; 
+  font-size: 40px; 
+  cursor: pointer;
+  padding: 10px;
+  pointer-events: auto; 
+}
+.desktop-btn.prev { left: 40px; }
+.desktop-btn.next { right: 40px; }
+
+/* Mute Button (Optional) */
+.video-mute-btn {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  cursor: pointer;
+  font-size: 20px;
+  pointer-events: auto;
+}
+
+/* ==================== MOBILE ==================== */
+@media (max-width: 850px) {
+  .hero-combined-section { height: 160vh; }
+  .hero-scroll-content { padding-bottom: 10vh; }
+  .hero-title { font-size: 14px; padding: 0 10px; }
+  .hero-subtitle { font-size: 20px; line-height: 1.2; }
+  .desktop-btn { display: none; }
+}

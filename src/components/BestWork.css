@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+/* ==================== SECTION WRAPPER ==================== */
+.best-work-dark-section {
+  width: 100%;
+  background-color: #1A1D1A; /* Dark background */
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==================== HEADER ==================== */
+.best-work-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.best-work-title {
+  color: #C0CAAD; 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 42px;
+  font-weight: 300; 
+  letter-spacing: 8px; 
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ==================== GRID LAYOUT ==================== */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row on desktop */
+  gap: 30px; 
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* ==================== VIEW ALL BUTTON ==================== */
+.view-all-wrapper {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.view-all-btn {
+  background-color: transparent; 
+  color: #C0CAAD; 
+  border: 2px solid #C0CAAD; 
+  padding: 14px 50px; 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px; 
+  font-weight: 700; 
+  letter-spacing: 2px; 
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0px; 
+}
+
+.view-all-btn:hover {
+  background-color: #C0CAAD; 
+  color: #1A1D1A; 
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 950px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    gap: 20px;
+  }
+}
+
+@media (max-width: 650px) {
+  .best-work-dark-section {
+    padding: 50px 20px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr; /* 1 card per row */
+    gap: 25px;
+  }
+
+  .best-work-title {
+    font-size: 28px;
+    letter-spacing: 4px;
+  }
+  
+  .view-all-btn {
+    width: 100%;
+    max-width: 300px;
+    font-size: 14px;
+  }
+}

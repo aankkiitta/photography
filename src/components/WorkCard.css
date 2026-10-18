@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+/* ==================== WORK CARD ==================== */
+.work-card {
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.work-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5; /* Desktop par lamba portrait */
+  overflow: hidden;
+}
+
+.work-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* Desktop Hover Zoom */
+.work-card:hover .work-card-img {
+  transform: scale(1.05);
+}
+
+/* ==================== DARK OVERLAY ==================== */
+.work-card-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); 
+  opacity: 0; 
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.work-card:hover .work-card-image-wrapper::after {
+  opacity: 1; 
+}
+
+/* ==================== WHITE BORDER BOX ==================== */
+.work-card-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  border: 2px solid #FFFFFF;
+  background-color: transparent; 
+  
+  padding: 8px 24px; 
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.4s ease;
+}
+
+/* HOVER PAR BOX WHITE HO JAYEGA */
+.work-card:hover .work-card-overlay {
+  background-color: #FFFFFF; 
+}
+
+.work-card-title {
+  color: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px; 
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+  transition: color 0.4s ease;
+}
+
+/* HOVER PAR TEXT DARK HO JAYEGA */
+.work-card:hover .work-card-title {
+  color: #1A1D1A; 
+}
+
+/* ==================== MOBILE FIX (Chhota Card) ==================== */
+/* ==================== MOBILE FIX (Aur Chhota Card) ==================== */
+@media (max-width: 850px) {
+  
+  /* Height aur kam ki */
+  .work-card-image-wrapper {
+    aspect-ratio: unset; 
+    height: 180px; /* 250px se 180px kar diya */
+  }
+
+  .work-card-title {
+    font-size: 12px; /* Text aur chhota */
+    letter-spacing: 1px;
+  }
+  
+  .work-card-overlay {
+    padding: 6px 15px; /* Box aur patla */
+  }
+
+  /* Mobile par hover effect normal rahega (Band) */
+  .work-card:hover .work-card-img {
+    transform: scale(1); 
+  }
+  
+  .work-card:hover .work-card-image-wrapper::after {
+    opacity: 0; 
+  }
+
+  .work-card:hover .work-card-overlay {
+    background-color: transparent; 
+  }
+
+  .work-card:hover .work-card-title {
+    color: #FFFFFF; 
+  }
+}

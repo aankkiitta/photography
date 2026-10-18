@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Gallery</title>
+
+<style>
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff; 
+  font-family: 'Inter', sans-serif;
+  color: #111;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* --- TOP TITLE: PORTFOLIO --- */
+.top-title {
+  width: 100%;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.top-title h1 {
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 12px; /* Spaced out like a premium brand */
+  text-transform: uppercase;
+  color: #111;
+}
+
+/* Main Layout Container */
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 80px 80px; /* Bottom padding for slider */
+  max-width: 1500px;
+  width: 100%;
+  gap: 80px; /* Gap between gallery and text */
+}
+
+/* --- LEFT SIDE: GALLERY --- */
+.gallery-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 650px; 
+  flex-shrink: 0;
+}
+
+.gallery-section {
+  position: relative;
+  width: 100%;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to left */
+  padding-left: 20px;
+}
+
+.card-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  position: absolute;
+  overflow: hidden;
+  background: #eee;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: 
+    transform 600ms cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 600ms ease,
+    z-index 0s;
+  will-change: transform;
+  top: 50%; 
+  left: 0; 
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+  filter: grayscale(100%) brightness(0.9); 
+  transition: filter 600ms ease;
+}
+
+.card.active img {
+  filter: grayscale(0%) brightness(1);
+}
+
+/* Card Info overlay */
+.card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 20px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 400ms ease, transform 400ms ease;
+  pointer-events: none;
+  color: white;
+}
+
+.card.active .card-info {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 200ms;
+}
+
+.card-info small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+  color: #ddd;
+}
+
+.card-info h2 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+/* --- SLIDER CONTROLS (Below Image) --- */
+.controls-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.hint {
+  color: #999;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.navigation {
+  display: flex;
+  gap: 15px;
+}
+
+.navigation button {
+  width: 45px;
+  height: 45px;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation button svg {
+  width: 20px;
+  height: 20px;
+  stroke: #333;
+  transition: all 0.3s ease;
+}
+
+.navigation button:hover {
+  border-color: #111;
+  background: #f5f5f5;
+}
+
+/* --- RIGHT SIDE: TEXT & BUTTON --- */
+.text-section {
+  flex: 1;
+  max-width: 480px;
+  transition: opacity 0.3s ease;
+}
+
+.text-section.fade-out {
+  opacity: 0;
+}
+
+.text-section h2 {
+  font-size: 48px; 
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+.text-section p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.see-more-btn {
+  display: inline-block;
+  padding: 12px 35px;
+  background-color: #ffffff;
+  color: #111;
+  border: 1px solid #111;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.see-more-btn:hover {
+  background-color: #111;
+  color: #ffffff;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 1100px) {
+  .main-container { gap: 40px; padding: 20px 40px 60px; }
+  .gallery-wrapper { width: 550px; }
+  .text-section h2 { font-size: 40px; }
+}
+
+@media (max-width: 900px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 20px 60px;
+  }
+  
+  .gallery-wrapper {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .gallery-section {
+    justify-content: center; /* Center on mobile */
+    padding-left: 0;
+  }
+
+  .text-section {
+    padding-left: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+  <!-- Top Title -->
+  <header class="top-title">
+    <h1>Portfolio</h1>
+  </header>
+
+  <main class="main-container">
+
+    <!-- Left Side: Gallery & Bottom Controls -->
+    <div class="gallery-wrapper">
+      <section class="gallery-section">
+        <div class="card-stage" id="cardStage">
+          
+          <article class="card" data-title="Modern Muse" data-desc="A striking exploration of contemporary fashion, blending bold silhouettes with subtle textures.">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1000&q=80" alt="Editorial">
+            <div class="card-info">
+              <small>COLLECTION 01</small>
+              <h2>Modern Muse</h2>
+            </div>
+          </article>
+
+          <article class="card" data-title="Soft Elegance" data-desc="Capturing the delicate balance between light and shadow, featuring striking blue tones and serene expressions.">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80" alt="Portrait">
+            <div class="card-info">
+              <small>COLLECTION 02</small>
+              <h2>Soft Elegance</h2>
+            </div>
+          </article>
+
+          <article class="card" data-title="New Perspective" data-desc="An intimate portrait series that challenges traditional angles and highlights raw, authentic emotion.">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1000&q=80" alt="Portrait">
+            <div class="card-info">
+              <small>COLLECTION 03</small>
+              <h2>New Perspective</h2>
+            </div>
+          </article>
+
+          <article class="card" data-title="Timeless Form" data-desc="Classic studio photography focusing on architectural lines and the timeless beauty of human form.">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=80" alt="Studio">
+            <div class="card-info">
+              <small>COLLECTION 04</small>
+              <h2>Timeless Form</h2>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Controls placed exactly below the image stack -->
+      <div class="controls-wrapper">
+        <div class="hint">CLICK A CARD TO EXPLORE</div>
+        <div class="navigation">
+          <button id="prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 17l-5-5 5-5M18 17l-5-5 5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button id="next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 17l5-5-5-5M13 17l5-5-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side: Text & Button -->
+    <section class="text-section" id="textSection">
+      <h2 id="dynamicTitle">Modern Muse</h2>
+      <p id="dynamicDesc">A striking exploration of contemporary fashion, blending bold silhouettes with subtle textures.</p>
+      <a href="#" class="see-more-btn">See More</a>
+    </section>
+
+  </main>
+
+<script>
+const stage = document.getElementById("cardStage");
+const cards = [...stage.querySelectorAll(".card")];
+const textSection = document.getElementById("textSection");
+const dynamicTitle = document.getElementById("dynamicTitle");
+const dynamicDesc = document.getElementById("dynamicDesc");
+
+let activeIndex = 0;
+
+function renderCards() {
+  const isMobile = window.innerWidth <= 900;
+  
+  const baseWidth = isMobile ? 260 : 340; 
+  const baseHeight = isMobile ? 360 : 480;
+
+  cards.forEach((card, index) => {
+    const offset = (index - activeIndex + cards.length) % cards.length;
+
+    // Shrink size for cards behind
+    let width = baseWidth - (offset * 40);
+    let height = baseHeight - (offset * 50);
+    
+    // Translate logic to stack them to the right
+    let translateX = offset * (isMobile ? 40 : 60);
+    // Keep them vertically centered
+    let translateY = (offset * 15) - (height / 2); 
+
+    card.style.width = `${width}px`;
+    card.style.height = `${height}px`;
+    card.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    card.style.zIndex = 10 - offset;
+    card.style.opacity = offset === 3 ? "0.6" : "1";
+
+    card.classList.toggle("active", offset === 0);
+  });
+
+  // Dynamic Text Update
+  const activeCard = cards[activeIndex];
+  const newTitle = activeCard.getAttribute("data-title");
+  const newDesc = activeCard.getAttribute("data-desc");
+
+  textSection.classList.add("fade-out");
+
+  setTimeout(() => {
+    dynamicTitle.textContent = newTitle;
+    dynamicDesc.textContent = newDesc;
+    textSection.classList.remove("fade-out");
+  }, 300); 
+}
+
+// Interactions
+cards.forEach((card, index) => {
+  card.addEventListener("click", () => {
+    if (index === activeIndex) {
+      activeIndex = (activeIndex + 1) % cards.length;
+    } else {
+      activeIndex = index;
+    }
+    renderCards();
+  });
+});
+
+document.getElementById("next").addEventListener("click", () => {
+  activeIndex = (activeIndex + 1) % cards.length;
+  renderCards();
+});
+
+document.getElementById("prev").addEventListener("click", () => {
+  activeIndex = (activeIndex - 1 + cards.length) % cards.length;
+  renderCards();
+});
+
+window.addEventListener("resize", () => {
+  clearTimeout(window.resizeTimer);
+  window.resizeTimer = setTimeout(renderCards, 100);
+});
+
+renderCards();
+</script>
+
+</body>
+</html>

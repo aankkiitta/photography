@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Gallery</title>
+
+<style>
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff; 
+  font-family: 'Inter', sans-serif;
+  color: #111;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* --- TOP TITLE: PORTFOLIO --- */
+.top-title {
+  width: 100%;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 10px;
+}
+
+.top-title h1 {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 12px; 
+  text-transform: uppercase;
+  color: #111;
+}
+
+/* Main Layout Container */
+.main-container {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  padding: 20px 0 60px; 
+  width: 90%; 
+  max-width: 1300px; 
+  margin: 0 auto;
+  /* Gap bilkul kam kar diya hai taaki paas aayen */
+  gap: 20px; 
+}
+
+/* --- LEFT SIDE: GALLERY --- */
+.gallery-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 55%; 
+  flex-shrink: 0;
+}
+
+.gallery-section {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+}
+
+.card-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  position: absolute;
+  overflow: hidden;
+  background: #eee;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+  cursor: pointer;
+  transition: 
+    transform 600ms cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 600ms ease,
+    z-index 0s;
+  will-change: transform;
+  top: 50%; 
+  left: 0; 
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+  filter: grayscale(70%) brightness(0.8); 
+  transition: filter 600ms ease;
+}
+
+.card.active img {
+  filter: grayscale(0%) brightness(1);
+}
+
+/* Card Info overlay */
+.card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 30px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 400ms ease, transform 400ms ease;
+  pointer-events: none;
+  color: white;
+}
+
+.card.active .card-info {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 200ms;
+}
+
+.card-info small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  color: #ddd;
+}
+
+.card-info h2 {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+/* --- RIGHT SIDE: TEXT, BUTTON & CONTROLS --- */
+.text-section {
+  width: 40%; 
+  display: flex;
+  flex-direction: column;
+  /* Yeh line pura text block ko vertically center karegi */
+  justify-content: center; 
+  /* Thoda left margin diya taaki bilkul image se chipke nahi */
+  padding-left: 30px; 
+  transition: opacity 0.3s ease;
+}
+
+.text-section.fade-out {
+  opacity: 0;
+}
+
+.text-section h2 {
+  font-size: 42px; 
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 15px;
+  color: #111;
+}
+
+.text-section p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* See More Button */
+.see-more-btn {
+  display: inline-block;
+  align-self: flex-start; 
+  padding: 12px 35px;
+  background-color: #ffffff;
+  color: #111;
+  border: 1px solid #111;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  margin-bottom: 30px; 
+}
+
+.see-more-btn:hover {
+  background-color: #111;
+  color: #ffffff;
+}
+
+/* --- CONTROLS (Below See More) --- */
+.controls-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.hint {
+  color: #fff;
+  background-color: #3b5bdb; 
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  display: inline-block;
+  align-self: flex-start; 
+}
+
+.navigation {
+  display: flex;
+  gap: 15px;
+  align-self: flex-start; 
+}
+
+.navigation button {
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation button svg {
+  width: 20px;
+  height: 20px;
+  stroke: #333;
+  transition: all 0.3s ease;
+}
+
+.navigation button:hover {
+  border-color: #111;
+  background: #f5f5f5;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 1100px) {
+  .text-section h2 { font-size: 36px; }
+}
+
+@media (max-width: 992px) {
+  .main-container {
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+    padding: 20px;
+  }
+  
+  .gallery-wrapper {
+    width: 100%;
+    align-items: center;
+  }
+  
+  .gallery-section {
+    justify-content: center; 
+    height: 500px;
+  }
+
+  .text-section {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .see-more-btn, .hint, .navigation {
+    align-self: center; 
+  }
+}
+</style>
+</head>
+
+<body>
+
+  <header class="top-title">
+    <h1>Portfolio</h1>
+  </header>
+
+  <main class="main-container">
+
+    <!-- Left Side: Gallery -->
+    <div class="gallery-wrapper">
+      <section class="gallery-section">
+        <div class="card-stage" id="cardStage">
+          
+          <article class="card" data-title="Modern Muse" data-desc="A striking exploration of contemporary fashion, blending bold silhouettes with subtle textures.">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1000&q=80" alt="Editorial">
+            <div class="card-info">
+              <small>COLLECTION 01</small>
+              <h2>Modern Muse</h2>
+            </div>
+          </article>
+
+          <article class="card" data-title="Soft Elegance" data-desc="Capturing the delicate balance between light and shadow, featuring striking blue tones and serene expressions.">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80" alt="Portrait">
+            <div class="card-info">
+              <small>COLLECTION 02</small>
+              <h2>Soft Elegance</h2>
+            </div>
+          </article>
+
+          <article class="card" data-title="New Perspective" data-desc="An intimate portrait series that challenges traditional angles and highlights raw, authentic emotion.">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1000&q=80" alt="Portrait">
+            <div class="card-info">
+              <small>COLLECTION 03</small>
+              <h2>New Perspective</h2>
+            </div>
+          </article>
+
+          <article class="card" data-title="Timeless Form" data-desc="Classic studio photography focusing on architectural lines and the timeless beauty of human form.">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=80" alt="Studio">
+            <div class="card-info">
+              <small>COLLECTION 04</small>
+              <h2>Timeless Form</h2>
+            </div>
+          </article>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- Right Side: Text, Button & Controls -->
+    <section class="text-section" id="textSection">
+      <h2 id="dynamicTitle">Modern Muse</h2>
+      <p id="dynamicDesc">A striking exploration of contemporary fashion, blending bold silhouettes with subtle textures.</p>
+      
+      <a href="#" class="see-more-btn">See More</a>
+
+      <div class="controls-wrapper">
+        <div class="hint">CLICK A CARD TO EXPLORE</div>
+        <div class="navigation">
+          <button id="prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 17l-5-5 5-5M18 17l-5-5 5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button id="next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 17l5-5-5-5M13 17l5-5-5-5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<script>
+const stage = document.getElementById("cardStage");
+const cards = [...stage.querySelectorAll(".card")];
+const textSection = document.getElementById("textSection");
+const dynamicTitle = document.getElementById("dynamicTitle");
+const dynamicDesc = document.getElementById("dynamicDesc");
+
+let activeIndex = 0;
+
+function renderCards() {
+  const isMobile = window.innerWidth <= 992;
+  
+  const baseWidth = isMobile ? 280 : 420; 
+  const baseHeight = isMobile ? 380 : 560;
+
+  cards.forEach((card, index) => {
+    const offset = (index - activeIndex + cards.length) % cards.length;
+
+    let width = baseWidth - (offset * 40);
+    let height = baseHeight - (offset * 50);
+    
+    let translateX = offset * (isMobile ? 45 : 80);
+    let translateY = (offset * 15) - (height / 2); 
+
+    card.style.width = `${width}px`;
+    card.style.height = `${height}px`;
+    card.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    card.style.zIndex = 10 - offset;
+    
+    if (offset === 3) card.style.opacity = "0.7"; 
+    else if (offset === 2) card.style.opacity = "0.85";
+    else card.style.opacity = "1";
+
+    card.classList.toggle("active", offset === 0);
+  });
+
+  const activeCard = cards[activeIndex];
+  const newTitle = activeCard.getAttribute("data-title");
+  const newDesc = activeCard.getAttribute("data-desc");
+
+  textSection.classList.add("fade-out");
+
+  setTimeout(() => {
+    dynamicTitle.textContent = newTitle;
+    dynamicDesc.textContent = newDesc;
+    textSection.classList.remove("fade-out");
+  }, 300); 
+}
+
+cards.forEach((card, index) => {
+  card.addEventListener("click", () => {
+    if (index === activeIndex) {
+      activeIndex = (activeIndex + 1) % cards.length;
+    } else {
+      activeIndex = index;
+    }
+    renderCards();
+  });
+});
+
+document.getElementById("next").addEventListener("click", () => {
+  activeIndex = (activeIndex + 1) % cards.length;
+  renderCards();
+});
+
+document.getElementById("prev").addEventListener("click", () => {
+  activeIndex = (activeIndex - 1 + cards.length) % cards.length;
+  renderCards();
+});
+
+window.addEventListener("resize", () => {
+  clearTimeout(window.resizeTimer);
+  window.resizeTimer = setTimeout(renderCards, 100);
+});
+
+renderCards();
+</script>
+
+</body>
+</html>

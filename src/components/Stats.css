@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap');
+
+/* ==================== STATS SECTION ==================== */
+.stats-section {
+  width: 100%;
+  background-color: #1A1D1A; 
+  padding: 30px 10px; /* Padding kam ki */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* LINE HIDE KAR DI HAI */
+  border-top: none; 
+  border-bottom: none;
+}
+
+/* Desktop Layout */
+.stats-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+/* Stat Box */
+.stat-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+}
+
+/* Desktop par Vertical Divider */
+.stat-box:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Number Styling */
+.stat-number {
+  color: #C09B6E; 
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 4vw, 56px); 
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Plus Sign */
+.stat-plus {
+  color: #C09B6E;
+  font-size: 0.6em;
+  margin-left: 3px;
+  margin-top: 3px;
+}
+
+/* Label Styling */
+.stat-label {
+  color: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap; 
+}
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+@media (max-width: 850px) {
+  .stats-section {
+    padding: 20px 15px; /* Mobile par top/bottom padding aur kam ki */
+  }
+
+  /* Mobile Grid: 2x2 Layout */
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px 10px; /* Upar-niche ka gap 30px se 20px kar diya */
+    text-align: center;
+  }
+
+  .stat-box {
+    padding: 5px;
+  }
+
+  /* Mobile par vertical line hide */
+  .stat-box:not(:last-child)::after {
+    display: none;
+  }
+
+  .stat-number {
+    font-size: 30px; 
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 9px; 
+    letter-spacing: 0.5px;
+    white-space: normal; 
+    line-height: 1.3;
+  }
+}
