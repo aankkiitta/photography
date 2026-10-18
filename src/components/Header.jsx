@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // <-- YEH IMPORT ZAROORI HAI
+import { Link } from 'react-router-dom'; 
 import './Header.css';
 import logo from "./image/logo.png"; 
 
@@ -23,16 +23,12 @@ const Header = () => {
 
         <div className="header-center-group">
           <nav className="nav-group desktop-only">
-            {/* HOME LINK */}
             <Link to="/">Home</Link>
             <a href="#services">Services</a>
-            
-            {/* PORTFOLIO LINK */}
             <Link to="/portfolio">Portfolio</Link>
           </nav>
 
           <div className="logo-container">
-            {/* LOGO LINK */}
             <Link to="/" className="logo-link">
               <img src={logo} alt="Logo" className="logo-img" />
             </Link>
@@ -54,15 +50,17 @@ const Header = () => {
       <div className="floating-nav-wrapper">
         <nav className="floating-glass-nav">
           
-          <button className="nav-icon" onClick={() => console.log('Search clicked')}>
+          {/* HOME ICON (Search ki jagah) */}
+          <Link to="/" className="nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
-          </button>
+          </Link>
 
           <div className="nav-divider"></div>
 
+          {/* MENU ICON */}
           <button className="nav-icon" onClick={() => setIsSliderOpen(true)}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -87,7 +85,6 @@ const Header = () => {
         </div>
         
         <nav className="slider-links">
-          {/* SLIDER MENU LINKS (Router ke saath) */}
           <Link to="/" onClick={() => setIsSliderOpen(false)}>Home</Link>
           <a href="#services" onClick={() => setIsSliderOpen(false)}>Services</a>
           <Link to="/portfolio" onClick={() => setIsSliderOpen(false)}>Portfolio</Link>
