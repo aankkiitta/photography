@@ -3,13 +3,12 @@
 /* ==================== STATS SECTION ==================== */
 .stats-section {
   width: 100%;
-  background-color: #1A1D1A; 
-  padding: 30px 10px; /* Padding kam ki */
+  background-color: white; 
+  padding: 30px 10px; 
   display: flex;
   justify-content: center;
   align-items: center;
   
-  /* LINE HIDE KAR DI HAI */
   border-top: none; 
   border-bottom: none;
 }
@@ -35,7 +34,7 @@
   position: relative;
 }
 
-/* Desktop par Vertical Divider */
+/* Desktop par Vertical Divider (White bg ke liye Grey color) */
 .stat-box:not(:last-child)::after {
   content: '';
   position: absolute;
@@ -43,12 +42,12 @@
   top: 15%;
   height: 70%;
   width: 1px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #E0E0E0; /* Dark grey line */
 }
 
 /* Number Styling */
 .stat-number {
-  color: #C09B6E; 
+  color: #C09B6E; /* Gold color */
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(28px, 4vw, 56px); 
   font-weight: 600;
@@ -66,12 +65,12 @@
   margin-top: 3px;
 }
 
-/* Label Styling */
+/* Label Styling (White bg ke liye Dark color) */
 .stat-label {
-  color: #FFFFFF;
+  color: #1A1D1A; /* Dark text */
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600; /* Thoda bold kiya taaki clear dikhe */
   letter-spacing: 1px;
   text-transform: uppercase;
   margin: 0;
@@ -81,14 +80,14 @@
 /* ==================== MOBILE RESPONSIVE ==================== */
 @media (max-width: 850px) {
   .stats-section {
-    padding: 20px 15px; /* Mobile par top/bottom padding aur kam ki */
+    padding: 20px 15px; 
   }
 
   /* Mobile Grid: 2x2 Layout */
   .stats-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
-    gap: 20px 10px; /* Upar-niche ka gap 30px se 20px kar diya */
+    gap: 20px 10px; 
     text-align: center;
   }
 
@@ -107,7 +106,7 @@
   }
 
   .stat-label {
-    font-size: 9px; 
+    font-size: 10px; 
     letter-spacing: 0.5px;
     white-space: normal; 
     line-height: 1.3;

@@ -6,11 +6,11 @@
   flex-direction: row; 
   width: 100%;
   min-height: 100vh; 
-  background-color: #1A1D1A; 
+  background-color: #FFFFFF; /* White Background */
   margin: 0;
   padding: 0;
-  align-items: center; 
-  overflow: hidden; /* Image bahar nahi niklegi */
+  align-items: stretch; /* Dono side barabar height lenge */
+  overflow: hidden; 
 }
 
 /* ==================== TEXT CONTENT (LEFT SIDE) ==================== */
@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: flex-end; 
   padding: 80px 40px 80px 8vw; 
-  order: 1; /* Text left */
+  order: 1; 
 }
 
 .about-text {
@@ -38,8 +38,9 @@
   margin-bottom: 20px;
 }
 
+/* DARK TEXT FOR WHITE BG */
 .about-title {
-  color: #FFFFFF;
+  color: #1A1D1A; 
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(36px, 3.5vw, 50px);
   font-weight: 500;
@@ -52,8 +53,9 @@
   color: #C09B6E;
 }
 
+/* DARK GREY TEXT FOR WHITE BG */
 .about-description {
-  color: #A0AAB2; 
+  color: #555555; 
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
   line-height: 1.8;
@@ -78,7 +80,7 @@
 
 .about-btn:hover {
   background-color: #C09B6E;
-  color: #1A1D1A;
+  color: #FFFFFF;
 }
 
 /* ==================== IMAGE CONTENT (RIGHT SIDE) ==================== */
@@ -86,26 +88,21 @@
   flex: 1; 
   width: 50%;
   display: flex;
-  justify-content: flex-end; /* Force right edge */
-  align-items: center;
+  justify-content: flex-end; 
+  align-items: stretch; /* Image ko poora stretch karega */
   padding: 0; 
   margin: 0;  
-  order: 2; /* Image right */
+  order: 2; 
   overflow: hidden;
 }
 
-/* THE MAGIC FIX: Zoom aur stretch karke transparent gap cut karna */
+/* DESKTOP IMAGE FIX: Bina gap ke screen cover karegi */
 .about-transparent-img {
   width: 100%;
-  height: 100vh; /* Height full screen */
-  object-fit: cover; /* Image ko stretch karega bina aspect ratio bigade */
-  
-  /* YEH LINE IMAGE KE ANDAR KI TRANSPARENT JAGAH KO CUT KAREGI */
+  height: 100vh; /* Full screen height */
+  object-fit: cover; /* Box ko poori tarah bharegi */
   object-position: right center; 
-  
-  /* Thoda sa scale badhaya taaki right edge se touch ho */
-  transform: scale(1.05) translateX(2%); 
-  
+  transform: none; 
   display: block;
   margin: 0;
   padding: 0;
@@ -115,7 +112,7 @@
 @media (max-width: 900px) {
   .about-section {
     flex-direction: column; 
-    padding: 0 0 20px 0; /* 100px se 20px kar diya taaki gap kam ho */
+    padding: 0; 
     min-height: auto;
   }
 
@@ -127,17 +124,18 @@
     order: 1; 
   }
 
+  /* MOBILE IMAGE FIX: Upar niche se gap nahi aayega */
   .about-transparent-img {
     width: 100%;
-    height: 55vh;
-    object-fit: cover;
-    object-position: top center;
+    height: 55vh; /* Screen ka 55% hissa */
+    object-fit: cover; /* Gap ko cover karega */
+    object-position: center top; 
     transform: none; 
   }
 
   .about-content-wrapper {
     width: 100%;
-    padding: 30px 20px 0 20px;
+    padding: 30px 20px 40px 20px; 
     justify-content: center;
     text-align: center; 
     order: 2; 
@@ -149,9 +147,13 @@
 
   .about-title {
     font-size: 32px;
+    color: #1A1D1A;
   }
   
-  /* Button ka gap adjust kiya */
+  .about-description {
+    color: #555555;
+  }
+  
   .about-btn {
     margin-bottom: 10px; 
   }

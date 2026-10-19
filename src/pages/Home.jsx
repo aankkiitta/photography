@@ -6,17 +6,23 @@ import Stats from '../components/Stats';
 import Service from '../components/Service';
 import BestWork from '../components/BestWork';
 import Review from '../components/Review';
+import FollowUs from '../components/FollowUs';
+import Showcase from '../components/Showcase';
+import CameraHero from '../components/CameraHero';
 const Home = () => {
   return (
     <>
-      <Hero />
-     
-      <About />
-      <Stats />
+      <CameraHero/>
       <Service/>
       <BestWork />
+      <Showcase/>
+      <About />
+      <Stats />
+ 
       <Review/>
-      {/* <Review /> */} {/* <-- Is line ko bhi hata dein */}
+           
+      <FollowUs/>
+
     </>
   );
 };

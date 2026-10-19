@@ -1,0 +1,545 @@
+
+/* ==================== SCENE & CAMERA ==================== */
+
+* {
+  box-sizing: border-box;
+}
+
+.scene {
+  position: relative;
+  height: 520vh;
+}
+
+.pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #f5f2ed;
+}
+
+/* ==================== BACKGROUND TEXT ==================== */
+
+.bg-text {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 1;
+  --scroll-text-color: #524f4a;
+}
+
+.text-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: clamp(24px, 4vw, 72px);
+  padding-inline: clamp(24px, 2.8vw, 54px);
+  line-height: 0.82;
+}
+
+.text-fusion-left,
+.text-fusion-right {
+  display: block;
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+
+  font-family: Impact, Haettenschweiler,
+    "Arial Narrow Bold", sans-serif;
+
+  font-size: clamp(150px, 21vw, 410px);
+  font-weight: 900;
+  line-height: 0.82;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  color: var(--scroll-text-color);
+  transition: color 80ms linear;
+}
+
+.text-fusion-left {
+  text-align: left;
+}
+
+.text-fusion-right {
+  text-align: right;
+}
+
+/* ==================== CENTER CAMERA ==================== */
+
+.cam {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: center center;
+  z-index: 2;
+  will-change: transform;
+}
+
+.cam svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+
+  filter: drop-shadow(
+    0 30px 40px rgba(0, 0, 0, 0.2)
+  );
+}
+
+.blade {
+  fill: #161513;
+  stroke: #37342f;
+  stroke-width: 1;
+}
+
+/* ==================== INSIDE CAMERA ==================== */
+
+.inside {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+
+  background: radial-gradient(
+    90% 80% at 50% 50%,
+    #1a1815,
+    #050504
+  );
+}
+
+.frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: min(62vw, 640px);
+  aspect-ratio: 3 / 2;
+
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  z-index: 1;
+
+  will-change: transform;
+}
+
+.frame img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  filter: brightness(0.1) blur(6px);
+}
+
+.frame .base {
+  position: absolute;
+  left: -70vw;
+  right: -70vw;
+  top: -44px;
+  bottom: -44px;
+
+  background: #1c1712;
+}
+
+.frame .sp {
+  position: absolute;
+  left: -70vw;
+  right: -70vw;
+  height: 12px;
+
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 12px,
+    #cfc7b6 12px 24px
+  );
+
+  opacity: 0.85;
+}
+
+.frame .sp.t {
+  top: -30px;
+}
+
+.frame .sp.b {
+  bottom: -30px;
+}
+
+.frame .edge {
+  position: absolute;
+  left: 0;
+  bottom: -40px;
+
+  color: #e0a050;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+/* ==================== SHUTTER CURTAINS ==================== */
+
+.curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  z-index: 2;
+
+  background: repeating-linear-gradient(
+    0deg,
+    #0d0c0b 0 6px,
+    #171512 6px 7px
+  );
+
+  will-change: transform;
+}
+
+.curtain.l {
+  left: 0;
+  box-shadow: inset -8px 0 14px rgba(0, 0, 0, 0.7);
+}
+
+.curtain.r {
+  right: 0;
+  box-shadow: inset 8px 0 14px rgba(0, 0, 0, 0.7);
+}
+
+/* ==================== CAPTION ==================== */
+
+.cap {
+  position: absolute;
+  left: 6vw;
+  bottom: 9vh;
+  z-index: 5;
+
+  color: #fff;
+  opacity: 0;
+
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+  will-change: transform, opacity;
+}
+
+.cap h2 {
+  margin: 0;
+
+  font: 400 clamp(40px, 7vw, 104px)/1
+    "Fraunces", Georgia, serif;
+
+  letter-spacing: -0.025em;
+}
+
+.cap p {
+  margin-top: 14px;
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+/* ==================== SCROLL STATUS ==================== */
+
+.where {
+  position: absolute;
+  left: 6vw;
+  top: 86px;
+  z-index: 6;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+
+  mix-blend-mode: difference;
+}
+
+.where i {
+  display: block;
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+
+  border-radius: 50%;
+  background: #00a6b7;
+}
+
+/* ==================== FILM STRIP ==================== */
+
+.strip {
+  position: relative;
+  height: 360vh;
+  overflow: clip;
+
+  background: #0f0e0d;
+  color: #e6e1d6;
+}
+
+.strip-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5vh;
+}
+
+.strip header {
+  padding: 0 6vw;
+}
+
+.strip h2 {
+  margin: 0;
+
+  font: 400 clamp(30px, 4.4vw, 62px)/1.05
+    "Fraunces", Georgia, serif;
+
+  letter-spacing: -0.02em;
+}
+
+.strip header p {
+  margin-top: 12px;
+  font-size: 15px;
+  color: #9d978a;
+}
+
+.film {
+  position: relative;
+  display: flex;
+  gap: 20px;
+
+  width: max-content;
+  padding: 34px 6vw;
+
+  background: #1a1815;
+  will-change: transform;
+}
+
+.film::before,
+.film::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 10px;
+
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 14px,
+    #e6e1d6 14px 26px
+  );
+
+  opacity: 0.75;
+}
+
+.film::before {
+  top: 12px;
+}
+
+.film::after {
+  bottom: 12px;
+}
+
+.film figure {
+  width: min(54vw, 520px);
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.film img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+
+  background: #2a2824;
+}
+
+.film figcaption {
+  margin-top: 10px;
+  color: #b9b3a6;
+  font-size: 12px;
+}
+
+.film figcaption b {
+  margin-right: 8px;
+  color: #e0381d;
+}
+
+/* ==================== TABLET ==================== */
+
+@media (max-width: 1024px) {
+  .text-row {
+    gap: 3vw;
+    padding-inline: 2.5vw;
+  }
+
+  .text-fusion-left,
+  .text-fusion-right {
+    font-size: 22vw;
+    letter-spacing: 0.005em;
+  }
+
+  .cam {
+    width: min(58vw, 560px);
+  }
+
+  .frame {
+    width: 76vw;
+  }
+
+  .film figure {
+    width: 62vw;
+  }
+}
+
+/* ==================== MOBILE ==================== */
+
+@media (max-width: 760px) {
+  .scene {
+    height: 440vh;
+  }
+
+  .pin {
+    min-height: 520px;
+  }
+
+  .text-row {
+    gap: 5vw;
+    padding-inline: 3vw;
+  }
+
+  .text-fusion-left,
+  .text-fusion-right {
+    font-size: 25vw;
+    letter-spacing: 0;
+  }
+
+  .cam {
+    width: min(84vw, 400px);
+  }
+
+  .where {
+    top: 68px;
+    left: 5vw;
+  }
+
+  .frame {
+    width: 88vw;
+  }
+
+  .cap {
+    left: 5vw;
+    bottom: 7vh;
+  }
+
+  .strip {
+    height: 280vh;
+  }
+
+  .strip-pin {
+    gap: 4vh;
+  }
+
+  .strip header {
+    padding-inline: 5vw;
+  }
+
+  .film {
+    gap: 14px;
+    padding: 30px 5vw;
+  }
+
+  .film figure {
+    width: 78vw;
+  }
+}
+
+/* ==================== SMALL PHONES ==================== */
+
+@media (max-width: 420px) {
+  .text-row {
+    gap: 4vw;
+    padding-inline: 2vw;
+  }
+
+  .text-fusion-left,
+  .text-fusion-right {
+    font-size: 24vw;
+  }
+
+  .cam {
+    width: 88vw;
+  }
+
+  .film figure {
+    width: 84vw;
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .text-fusion-left,
+  .text-fusion-right {
+    transition: none;
+  }
+}
+
+
+
+
+
+
+
+
+/* PRODUCTION - SEPARATE TEXT */
+.text-production-wrapper {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  pointer-events: none;
+}
+
+.text-production {
+  margin: 0;
+  padding: 0;
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(24px, 5vw, 80px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.35vw;
+  color: #514e49;
+  text-transform: uppercase;
+}
+
+/* MOBILE */
+@media (max-width: 760px) {
+  .text-production-wrapper {
+    top: 82%;
+  }
+
+  .text-production {
+    font-size: 7vw;
+    letter-spacing: 0.5vw;
+  }
+}

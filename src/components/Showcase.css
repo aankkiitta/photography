@@ -1,0 +1,222 @@
+/* ==================== WRAPPER ==================== */
+.showcase-container-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;
+  background-color: #FFFFFF !important; 
+  padding: 40px 0 0 0; 
+  margin: 0;
+}
+
+/* ==================== TITLE SECTION ==================== */
+.sc-header {
+  text-align: center;
+  margin-bottom: 30px; 
+  padding: 0;
+}
+
+.sc-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(24px, 4vw, 42px);
+  font-weight: 500;
+  color: #1A1D1A !important; 
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin: 0 0 10px 0;
+}
+
+.sc-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #C09B6E;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 0;
+}
+
+/* ==================== STAGE ==================== */
+.sc-stage,
+.sc-stage *,
+.sc-tools,
+.sc-tools * {
+  box-sizing: border-box;
+}
+ 
+.sc-stage {
+  --sc-bg: #FFFFFF; 
+  --sc-label: #6b6663;
+  --sc-card-bg: #d9d5d3;
+  --sc-focus: #3b6cff;
+ 
+  position: relative;
+  width: 100%;
+  min-height: 240px;          
+  margin: 0;
+  padding: 0;
+  background: var(--sc-bg);
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+ 
+.sc-stage.is-dragging {
+  cursor: grabbing;
+}
+ 
+/* One slot = label + card. */
+.sc-slot {
+  position: absolute;
+  bottom: 0;                  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  will-change: left, width;
+}
+ 
+.sc-name {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  font: 500 9px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--sc-label);
+}
+ 
+.sc-name::before {
+  content: "";
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1px solid var(--sc-label);
+}
+ 
+.sc-card {
+  position: relative;
+  width: 100%;
+  background: var(--sc-card-bg);
+  border-radius: 6px 6px 0 0;
+  overflow: hidden;
+}
+ 
+.sc-slot:focus-visible .sc-card {
+  outline: 2px solid var(--sc-focus);
+  outline-offset: -2px;
+}
+ 
+.sc-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+ 
+/* Optional corner icon: item.badge */
+.sc-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #222;
+}
+ 
+.sc-badge svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* ==================== PREVIOUS / NEXT BUTTONS (LEFT & RIGHT) ==================== */
+.sc-tools {
+  position: absolute;
+  top: 50%; /* Vertically center */
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 30;
+  display: flex;
+  justify-content: space-between; /* Ek left me, ek right me */
+  padding: 0 20px; /* Kinare se thoda gap */
+  pointer-events: none; /* Taaki beech ke area me click block na ho */
+}
+ 
+.sc-tool {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: rgba(120, 120, 120, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  pointer-events: auto; /* Buttons clickable rahein */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+ 
+.sc-tool:hover {
+  background: rgba(100, 100, 100, 0.75);
+}
+ 
+.sc-tool:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+ 
+.sc-tool svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+ 
+/* ==================== MOBILE ==================== */
+@media (max-width: 640px) {
+  .sc-tools,
+  .sc-badge {
+    display: none; /* Mobile par buttons nahi dikhenge */
+  }
+ 
+  .sc-name {
+    font-size: 10px;
+  }
+  
+  .showcase-container-wrapper {
+    padding: 30px 0 0 0; 
+  }
+  
+  .sc-header {
+    margin-bottom: 20px;
+  }
+
+  .sc-title {
+    letter-spacing: 3px;
+    font-size: 22px;
+  }
+}

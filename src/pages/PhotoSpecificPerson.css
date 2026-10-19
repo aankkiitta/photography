@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@400;500;600&display=swap');
+
+/* ==================== PAGE WRAPPER ==================== */
+.photo-specific-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #FFFFFF;
+  padding: 120px 40px 80px 40px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden; 
+}
+
+/* ==================== BACK BUTTON ==================== */
+.back-btn {
+  align-self: flex-start;
+  background: transparent;
+  border: none;
+  color: #888;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 30px;
+  transition: color 0.3s ease;
+}
+.back-btn:hover { color: #C09B6E; }
+
+/* ==================== HEADER ==================== */
+.specific-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.specific-title {
+  color: #1A1D1A;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.specific-category {
+  color: #C09B6E;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+/* ==================== MASONRY GRID ==================== */
+.specific-photo-grid {
+  column-count: 3; 
+  column-gap: 25px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.specific-photo-box {
+  width: 100%;
+  height: auto; 
+  margin-bottom: 25px;
+  border-radius: 4px;
+  overflow: hidden;
+  break-inside: avoid; 
+  background-color: #F0F0F0; 
+  
+  /* Animation Base */
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards; 
+  animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* YEH CLASS TAB LAGEGI JAB IMAGE SCREEN PAR NAHI HOGI */
+.hidden {
+  opacity: 0;
+}
+
+.specific-photo-box img {
+  width: 100%;
+  height: auto; 
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.specific-photo-box:hover img {
+  transform: scale(1.05); 
+}
+
+/* ==================== ANIMATION KEYFRAMES ==================== */
+@keyframes slideFromLeft {
+  0% { opacity: 0; transform: translateX(-80px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+.specific-photo-box.from-left { animation-name: slideFromLeft; }
+
+@keyframes slideFromRight {
+  0% { opacity: 0; transform: translateX(80px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+.specific-photo-box.from-right { animation-name: slideFromRight; }
+
+@keyframes slideFromBottom {
+  0% { opacity: 0; transform: translateY(80px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.specific-photo-box.from-bottom { animation-name: slideFromBottom; }
+
+@keyframes slideFromTop {
+  0% { opacity: 0; transform: translateY(-80px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.specific-photo-box.from-top { animation-name: slideFromTop; }
+
+@keyframes zoomInEffect {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.specific-photo-box.zoom-in { animation-name: zoomInEffect; }
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+@media (max-width: 900px) {
+  .photo-specific-section { padding: 100px 20px 60px 20px; }
+  .specific-photo-grid { column-count: 2; column-gap: 15px; }
+  .specific-photo-box { margin-bottom: 15px; }
+}
+
+@media (max-width: 600px) {
+  .specific-photo-grid { column-count: 1; }
+  .specific-title { font-size: 32px; }
+}

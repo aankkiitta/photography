@@ -111,16 +111,16 @@
     font-size: 32px; /* Mobile par thoda chhota */
   }
 
-  /* Button Mobile Adjust */
+  /* Button Mobile Adjust (CHHOTA KIYA) */
   .contact-btn-wrapper {
-    margin-top: 30px;
+    margin-top: 20px; /* Gap aur kam kiya */
   }
   
   .contact-btn {
-    padding: 12px 35px;
-    font-size: 14px;
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
+    padding: 8px 20px; /* Padding aur kam ki (pehle 12px 35px thi) */
+    font-size: 11px;   /* Font size aur chhota kiya */
+    letter-spacing: 1px; /* Letter spacing kam ki */
+    width: auto;       /* Full width hatadi, ab sirf text jitna bada hoga */
+    max-width: none;   /* Max width hatadi */
   }
 }
