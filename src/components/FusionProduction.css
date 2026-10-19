@@ -1,0 +1,307 @@
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  background: #0f0e0d;
+  font-family: Georgia, serif;
+}
+
+:root {
+  --fw: min(36vw, 440px);
+  --sw: calc(var(--fw) * 0.62);
+  --pad: 45px;
+}
+
+.scene { height: 450vh; position: relative; }
+
+.pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  min-height: 520px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #f5f2ed;
+}
+
+/* ===== FUS [camera] ION ===== */
+.bg-text {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: clamp(24px, 2.8vw, 54px);
+  pointer-events: none;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 900;
+  font-size: clamp(150px, 21vw, 410px);
+  line-height: 0.82;
+  letter-spacing: 0.015em;
+  color: #524f4a;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.bg-text span { display: block; will-change: transform, opacity; }
+
+.production {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  pointer-events: none;
+}
+.production h2 {
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(24px, 5vw, 80px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.35vw;
+  color: #514e49;
+  text-transform: uppercase;
+}
+
+/* ===== CAMERA ===== */
+.cam {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+width: min(38vw, 500px); 
+  z-index: 3;
+  transform: translate(-50%, -59.5%);
+  transform-origin: 50% 59.5%;
+  will-change: transform;
+}
+.cam svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.22));
+}
+
+/* ===== ROLL STAGE ===== */
+.stage {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: radial-gradient(90% 80% at 50% 50%, #1b1814, #070605);
+}
+
+.hwrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+.hstrip {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  padding: 26px 6vw;
+  background: #1a1815;
+  will-change: transform;
+}
+.hstrip::before,
+.hstrip::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 8px;
+  opacity: 0.8;
+  background: repeating-linear-gradient(90deg, transparent 0 12px, #e6e1d6 12px 22px);
+}
+.hstrip::before { top: 9px; }
+.hstrip::after { bottom: 9px; }
+.hstrip figure { width: min(26vw, 260px); flex: 0 0 auto; }
+.hstrip img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: #2a2824;
+}
+
+.vfade {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+.vstrip {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: calc(var(--fw) + var(--pad) * 2);
+  padding: 0 var(--pad);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #1a1815;
+  will-change: transform;
+}
+.vstrip::before,
+.vstrip::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  opacity: 0.8;
+  background: repeating-linear-gradient(180deg, transparent 0 12px, #e6e1d6 12px 22px);
+}
+.vstrip::before { left: calc(var(--pad) / 2 - 6px); }
+.vstrip::after { right: calc(var(--pad) / 2 - 6px); }
+.vstrip figure { width: var(--fw); }
+.vstrip img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: #2a2824;
+}
+.vstrip.side { width: calc(var(--sw) + var(--pad) * 2); gap: 18px; }
+.vstrip.side figure { width: var(--sw); }
+.vstrip.s-l { left: calc(50% - ((var(--fw) + var(--sw)) / 2 + var(--pad) * 2 + 16px)); }
+.vstrip.s-r { left: calc(50% + ((var(--fw) + var(--sw)) / 2 + var(--pad) * 2 + 16px)); }
+
+/* ===== FINAL FRAME ===== */
+.fstage {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--fw);
+  aspect-ratio: 3 / 2;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  will-change: transform;
+}
+.frame img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.frame .base {
+  position: absolute;
+  left: -70vw;
+  right: -70vw;
+  top: -44px;
+  bottom: -44px;
+  background: #1c1712;
+}
+.frame .sp {
+  position: absolute;
+  left: -70vw;
+  right: -70vw;
+  height: 12px;
+  opacity: 0.85;
+  background: repeating-linear-gradient(90deg, transparent 0 12px, #cfc7b6 12px 24px);
+}
+.frame .sp.t { top: -30px; }
+.frame .sp.b { bottom: -30px; }
+.frame .edge {
+  position: absolute;
+  left: 0;
+  bottom: -40px;
+  color: #e0a050;
+  font: 600 10px sans-serif;
+  letter-spacing: 0.2em;
+}
+
+.cap {
+  position: absolute;
+  left: 6vw;
+  bottom: 9vh;
+  z-index: 5;
+  color: #fff;
+  opacity: 0;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.6);
+  will-change: transform, opacity;
+}
+.cap h2 {
+  font: 400 clamp(40px, 7vw, 104px) / 1 "Fraunces", Georgia, serif;
+  letter-spacing: -0.025em;
+}
+.cap p { margin-top: 14px; font: 15px sans-serif; opacity: 0.9; }
+
+.where {
+  position: absolute;
+  left: 6vw;
+  top: 40px;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font: 600 13px sans-serif;
+  mix-blend-mode: difference;
+}
+.where i {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: #00a6b7;
+}
+
+.after {
+  height: 50vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 0 6vw;
+  background: #0f0e0d;
+  color: #e6e1d6;
+  font-size: clamp(24px, 4vw, 54px);
+}
+
+@media (max-width: 1024px) {
+  :root { --fw: 32vw; --sw: calc(var(--fw) * 0.6); --pad: 36px; }
+  .hstrip figure { width: 34vw; }
+}
+
+@media (max-width: 760px) {
+  :root { --fw: 78vw; --pad: 34px; }
+  .scene { height: 400vh; }
+  .cam { width: 92vw; }
+  .bg-text { font-size: 25vw; padding-inline: 3vw; }
+  .production { top: 82%; }
+  .production h2 { font-size: 7vw; letter-spacing: 0.5vw; }
+
+  .hwrap { gap: 4px; }
+  .hstrip { gap: 8px; padding: 16px 4vw; }
+  .hstrip::before { top: 4px; }
+  .hstrip::after { bottom: 4px; }
+  .hstrip figure { width: 80vw; max-width: 320px; }
+
+  .vstrip.side { display: none; }
+  .cap { left: 5vw; bottom: 7vh; }
+  .where { left: 5vw; top: 30px; }
+}

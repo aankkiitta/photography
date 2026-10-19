@@ -8,21 +8,23 @@ import BestWork from '../components/BestWork';
 import Review from '../components/Review';
 import FollowUs from '../components/FollowUs';
 import Showcase from '../components/Showcase';
-import CameraHero from '../components/CameraHero';
+
+// Yahan spelling exactly file ke naam jaisi honi chahiye
+import FusionProduction from '../components/FusionProduction';
+
 const Home = () => {
   return (
     <>
-      <CameraHero/>
-      <Service/>
+      {/* Animation component sabse upar hai, ye poori screen cover karega */}
+      <FusionProduction/>
+
+      <Service />
       <BestWork />
-      <Showcase/>
+      <Showcase />
       <About />
       <Stats />
- 
-      <Review/>
-           
-      <FollowUs/>
-
+      <Review />
+      <FollowUs />
     </>
   );
 };
