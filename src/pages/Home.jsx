@@ -29,9 +29,7 @@ const Home = () => {
      
       <FAQ/>
       <CustomerReviews/>
-      
-      <FilmRollReviews/>
-        <Review />
+
       <ContactCTA/>
       <FollowUs />
     </>
