@@ -13,7 +13,7 @@ import ContactCTA from '../components/ContactCTA';
 import FilmStripReview from '../components/FilmStripReview';
 import FusionProduction from '../components/FusionProduction';
 import FilmRollReviews from '../components/FilmRollReviews';
-
+import CustomerReviews from '../components/CustomerReviews';
 const Home = () => {
   return (
     <>
@@ -28,7 +28,8 @@ const Home = () => {
         <Showcase />
      
       <FAQ/>
-      <FilmStripReview/>
+      <CustomerReviews/>
+      
       <FilmRollReviews/>
         <Review />
       <ContactCTA/>
