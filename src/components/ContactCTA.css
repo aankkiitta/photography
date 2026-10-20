@@ -90,16 +90,15 @@
 .cta-button:hover .arrow {
   transform: translateX(5px);
 }
-
 /* --- MOBILE VIEW --- */
 @media (max-width: 768px) {
   .cta-section {
-    padding: 10px 5vw; /* Mobile par bhi upar-niche space bahut kam */
+    padding: 20px 5vw; /* Slightly more breathing room */
   }
 
   .cta-container {
     flex-direction: column;
-    gap: 15px; /* Image aur text ke beech ka gap kam kiya */
+    gap: 20px; 
     text-align: center;
   }
 
@@ -109,7 +108,7 @@
   }
   
   .cta-illustration {
-    max-width: 240px; /* Mobile par image ki height kam ki */
+    max-width: 200px; /* Slightly smaller image for mobile */
   }
 
   .cta-text-side {
@@ -118,18 +117,22 @@
   }
 
   .cta-heading {
-    font-size: 36px;
-    margin-bottom: 8px;
+    font-size: 34px;
+    margin-bottom: 10px;
   }
 
   .cta-subtext {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-size: 14px;
+    padding: 0 10px; /* Prevents text from touching screen edges */
   }
 
+  /* FIXED BUTTON STYLES FOR MOBILE */
   .cta-button {
-    width: 100%;
-    max-width: 260px;
-    padding: 12px 24px;
+    width: auto; /* Removed 100% so it doesn't stretch */
+    max-width: none;
+    padding: 12px 24px; /* Smaller padding */
+    font-size: 12px; /* Slightly smaller text */
+    letter-spacing: 0.1em;
   }
 }

@@ -33,7 +33,7 @@ const About = () => {
             Fusion Story Production — <em>Your Moments, Our Vision, Stories That Last Forever.</em>
           </p>
 
-          <button className="about-btn">Know More</button>
+         
         </div>
       </div>
 
