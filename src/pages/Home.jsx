@@ -5,11 +5,12 @@ import About from '../components/About';
 import Stats from '../components/Stats';
 import Service from '../components/Service';
 import BestWork from '../components/BestWork';
+import FAQ from '../components/FAQ';
 import Review from '../components/Review';
 import FollowUs from '../components/FollowUs';
 import Showcase from '../components/Showcase';
+import ContactCTA from '../components/ContactCTA';
 
-// Yahan spelling exactly file ke naam jaisi honi chahiye
 import FusionProduction from '../components/FusionProduction';
 
 const Home = () => {
@@ -23,7 +24,9 @@ const Home = () => {
       <Showcase />
       <About />
       <Stats />
+      <FAQ/>
       <Review />
+      <ContactCTA/>
       <FollowUs />
     </>
   );

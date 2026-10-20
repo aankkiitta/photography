@@ -144,54 +144,53 @@
   .desktop-only { display: none !important; }
   .header-center-group { flex: 1; }
 
-  /* ==================== FLOATING MENU ==================== */
-  .floating-nav-wrapper {
-    display: flex;
-    position: fixed;
-    bottom: 30px; 
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999;
-  }
+ /* ==================== FLOATING MENU (SMALLER) ==================== */
+.floating-nav-wrapper {
+  display: flex;
+  position: fixed;
+  bottom: 30px; 
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
 
-  .floating-glass-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 12px;
-    gap: 15px;
-    background-color: rgba(26, 29, 26, 0.85); 
-    backdrop-filter: blur(12px); 
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 40px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
+.floating-glass-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px; /* Reduced from 6px 12px */
+  gap: 8px; /* Reduced from 15px */
+  background-color: rgba(26, 29, 26, 0.85); 
+  backdrop-filter: blur(12px); 
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-  .nav-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    background: transparent;
-    border: none;
-    color: #F5F5F0; 
-    cursor: pointer;
-    border-radius: 50%;
-  }
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px; /* Reduced from 45px */
+  height: 35px; /* Reduced from 45px */
+  background: transparent;
+  border: none;
+  color: #F5F5F0; 
+  cursor: pointer;
+  border-radius: 50%;
+}
 
-  .nav-icon svg {
-    width: 24px;
-    height: 24px;
-  }
+.nav-icon svg {
+  width: 18px; /* Reduced from 24px */
+  height: 18px; /* Reduced from 24px */
+}
 
-  .nav-divider {
-    width: 1px;
-    height: 20px;
-    background-color: rgba(255, 255, 255, 0.2); 
-  }
-
+.nav-divider {
+  width: 1px;
+  height: 15px; /* Reduced from 20px */
+  background-color: rgba(255, 255, 255, 0.2); 
+}
   /* ==================== SLIDER MENU ==================== */
   .mobile-slider-overlay {
     display: block;

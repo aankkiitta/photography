@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import PortfolioPage from "./pages/PortfolioPage"; // Portfolio 
 import Footer from './components/Footer';
 import PhotoSpecificPerson from "./pages/PhotoSpecificPerson"; 
+import WhatsAppFloat from './components/WhatsAppFloat';
 
 import './App.css';
 
@@ -24,7 +25,7 @@ function App() {
        <Route path="/project/:id" element={<PhotoSpecificPerson />} /> 
       </Routes>
 
-
+<WhatsAppFloat/>
       <Footer/>
     </>
   );

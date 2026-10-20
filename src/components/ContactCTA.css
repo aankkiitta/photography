@@ -1,0 +1,135 @@
+.cta-section {
+  background: #f5f2ed;
+  padding: 20px 5vw; /* Padding 60px se 20px kar di, upar-niche ka space almost khatam */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.cta-container {
+  max-width: 1100px; 
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 40px; 
+}
+
+/* --- LEFT SIDE (Image) --- */
+.cta-image-side {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.cta-illustration {
+  width: 100%;
+  max-width: 380px; /* Image thodi si choti ki taaki height kam ho */
+  height: auto;
+  display: block;
+}
+
+/* --- RIGHT SIDE (Text & Button) --- */
+.cta-text-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cta-heading {
+  font-size: clamp(45px, 5vw, 70px); 
+  font-weight: 900;
+  line-height: 0.95;
+  color: #b82b2b; 
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin-top: 0;
+  margin-bottom: 10px; /* Heading ke niche space aur kam kiya */
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.cta-subtext {
+  font-size: clamp(16px, 1.5vw, 18px);
+  font-weight: 500;
+  color: #222;
+  line-height: 1.4;
+  margin-bottom: 20px; /* Text aur button ke beech space aur kam kiya */
+  letter-spacing: 0.01em;
+}
+
+/* Button Style */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #111;
+  color: #fff;
+  padding: 14px 30px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  border-radius: 2px; 
+  transition: all 0.3s ease;
+  border: 2px solid #111;
+  width: fit-content; 
+}
+
+.cta-button:hover {
+  background: transparent;
+  color: #111;
+}
+
+.cta-button .arrow {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover .arrow {
+  transform: translateX(5px);
+}
+
+/* --- MOBILE VIEW --- */
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 10px 5vw; /* Mobile par bhi upar-niche space bahut kam */
+  }
+
+  .cta-container {
+    flex-direction: column;
+    gap: 15px; /* Image aur text ke beech ka gap kam kiya */
+    text-align: center;
+  }
+
+  .cta-image-side {
+    order: 1; 
+    justify-content: center;
+  }
+  
+  .cta-illustration {
+    max-width: 240px; /* Mobile par image ki height kam ki */
+  }
+
+  .cta-text-side {
+    order: 2; 
+    align-items: center; 
+  }
+
+  .cta-heading {
+    font-size: 36px;
+    margin-bottom: 8px;
+  }
+
+  .cta-subtext {
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 260px;
+    padding: 12px 24px;
+  }
+}
