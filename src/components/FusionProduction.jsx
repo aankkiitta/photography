@@ -215,9 +215,14 @@ export default function FusionProduction() {
             <span ref={wLRef}>FUS</span>
             <span ref={wRRef}>ION</span>
           </div>
-          <div className="production" ref={prodRef}>
-            <h2>PRODUCTION</h2>
-          </div>
+     <div className="production" ref={prodRef}>
+  <h2 className="desk-only">PRODUCTION</h2>
+  <div className="mob-only">
+    <span className="mp-fusion">FUSION</span>
+    <span className="mp-story">STORY</span>
+    <span className="mp-production">PRODUCTION</span>
+  </div>
+</div>
 
           {/* CAMERA */}
           <div className="cam" ref={camRef}>
@@ -321,13 +326,18 @@ export default function FusionProduction() {
             </div>
           </div>
 
-          <div className="where">
-            <i />
-            <span ref={whereRef}>Rotate</span>
-          </div>
+          
         </div>
       </section>
 
     </>
   );
 }
+
+
+
+
+
+
+
+

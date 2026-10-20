@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 * { box-sizing: border-box; margin: 0; }
 
 body {
@@ -304,4 +312,31 @@ width: min(38vw, 500px);
   .vstrip.side { display: none; }
   .cap { left: 5vw; bottom: 7vh; }
   .where { left: 5vw; top: 30px; }
+}
+
+
+
+
+
+
+
+
+/* Mobile stack: hidden on desktop */
+.mob-only { display: none; }
+
+@media (max-width: 760px) {
+  /* Desktop PRODUCTION hide on mobile */
+  .desk-only { display: none; }
+
+  /* Show mobile stack */
+  .mob-only {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 0.95;
+  }
+
+  .mp-fusion   { font-size: 9vw; letter-spacing: 0.4vw; }
+  .mp-story    { font-size: 7vw; letter-spacing: 0.6vw; opacity: 0.85; }
+  .mp-production { font-size: 5vw; letter-spacing: 0.8vw; opacity: 0.7; }
 }
