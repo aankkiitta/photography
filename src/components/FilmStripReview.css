@@ -1,0 +1,130 @@
+/* Section Wrapper */
+.review-section {
+  background-color: #f5f2ed;
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.review-wrapper {
+  width: 100%;
+  max-width: 800px; /* Box ko thoda choda kiya taaki text achha lage */
+}
+
+/* The Red Film Strip */
+.film-strip {
+  background-color: #6b1d1d; /* Dark Red */
+  padding: 24px 20px; 
+  border-radius: 6px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(107, 29, 29, 0.25);
+  
+  /* The Sprocket Holes (Top and Bottom) */
+  background-image: 
+    repeating-linear-gradient(90deg, transparent, transparent 15px, #f5f2ed 15px, #f5f2ed 25px),
+    repeating-linear-gradient(90deg, transparent, transparent 15px, #f5f2ed 15px, #f5f2ed 25px);
+  background-size: 100% 14px, 100% 14px;
+  background-position: 0 5px, 0 calc(100% - 5px);
+  background-repeat: no-repeat;
+}
+
+/* The White Inner Box */
+.film-frame {
+  background-color: #ffffff;
+  border-radius: 4px;
+  width: 100%;
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.05); /* Inner shadow for photo feel */
+}
+
+/* Text Styling */
+.text-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 40px;
+}
+
+.review-content {
+  text-align: center;
+  font-family: 'Playfair Display', Georgia, serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stars {
+  color: #D4AF37; /* Gold color */
+  font-size: 20px;
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+}
+
+.quote-icon {
+  font-size: 80px;
+  color: #6b1d1d;
+  line-height: 0.8;
+  margin-bottom: -10px;
+  font-family: serif;
+  opacity: 0.2; /* Halka sa watermark look */
+}
+
+.review-content p {
+  font-size: 22px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 30px;
+  font-style: italic;
+  max-width: 90%;
+}
+
+.client-info h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1A1D1A;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 5px 0;
+}
+
+.client-info span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ==================== MOBILE VIEW ==================== */
+@media (max-width: 768px) {
+  .review-section {
+    padding: 60px 15px;
+  }
+
+  .film-strip {
+    padding: 20px 15px;
+    background-size: 100% 10px, 100% 10px;
+    background-position: 0 5px, 0 calc(100% - 5px);
+  }
+
+  .text-frame {
+    padding: 30px 20px;
+  }
+
+  .review-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
+  
+  .quote-icon {
+    font-size: 60px;
+  }
+  
+  .stars {
+    font-size: 16px;
+  }
+}

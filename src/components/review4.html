@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Reviews</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Pinyon+Script&family=Bodoni+Moda:wght@400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f3ec;
+    --maroon: #5e0f17;
+    --pink: #d4a9b0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    padding: 28px 16px 40px;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  .wrap { max-width: 860px; margin: 0 auto; }
+
+  /* ---------- heading ---------- */
+  .title { margin: 0 0 24px; line-height: 1; text-align: center; }
+  .title .script {
+    display: block;
+    font-family: "Pinyon Script", "Snell Roundhand", cursive;
+    font-size: clamp(2.8rem, 8vw, 4.6rem);
+    color: #c4161c;
+    font-weight: 400;
+  }
+  .title .caps {
+    display: block;
+    font-family: "Bodoni Moda", "Didot", "Playfair Display", serif;
+    font-size: clamp(2.2rem, 6.5vw, 3.7rem);
+    font-weight: 400;
+    color: #2a2a2a;
+    margin-top: -.12em;
+  }
+
+  /* ---------- stamp card (shared by board + slider) ---------- */
+  .card { filter: drop-shadow(0 6px 8px rgba(60, 20, 25, .22)); }
+
+  .stamp {
+    --r: 6px;      /* perforation radius */
+    --s: 20px;     /* distance between perforations */
+    height: 100%;
+    padding: 28px 26px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+    background: var(--bg);
+    color: var(--fg);
+
+    -webkit-mask:
+      linear-gradient(#000 0 0) center / calc(100% - var(--r) * 2) calc(100% - var(--r) * 2) no-repeat,
+      radial-gradient(circle at 50% 0,    #0000 var(--r), #000 calc(var(--r) + .5px)) center top    / var(--s) var(--r) repeat-x,
+      radial-gradient(circle at 50% 100%, #0000 var(--r), #000 calc(var(--r) + .5px)) center bottom / var(--s) var(--r) repeat-x,
+      radial-gradient(circle at 0 50%,    #0000 var(--r), #000 calc(var(--r) + .5px)) left center   / var(--r) var(--s) repeat-y,
+      radial-gradient(circle at 100% 50%, #0000 var(--r), #000 calc(var(--r) + .5px)) right center  / var(--r) var(--s) repeat-y;
+            mask:
+      linear-gradient(#000 0 0) center / calc(100% - var(--r) * 2) calc(100% - var(--r) * 2) no-repeat,
+      radial-gradient(circle at 50% 0,    #0000 var(--r), #000 calc(var(--r) + .5px)) center top    / var(--s) var(--r) repeat-x,
+      radial-gradient(circle at 50% 100%, #0000 var(--r), #000 calc(var(--r) + .5px)) center bottom / var(--s) var(--r) repeat-x,
+      radial-gradient(circle at 0 50%,    #0000 var(--r), #000 calc(var(--r) + .5px)) left center   / var(--r) var(--s) repeat-y,
+      radial-gradient(circle at 100% 50%, #0000 var(--r), #000 calc(var(--r) + .5px)) right center  / var(--r) var(--s) repeat-y;
+  }
+
+  .stamp.white  { --bg: #ffffff;       --fg: #3b1a1f; --av-bg: var(--maroon); --av-fg: #fff; --star: var(--maroon); }
+  .stamp.pink   { --bg: var(--pink);   --fg: #6a1624; --av-bg: var(--maroon); --av-fg: #fff; --star: var(--maroon); }
+  .stamp.maroon { --bg: var(--maroon); --fg: #f7ebe8; --av-bg: #fff; --av-fg: var(--maroon);  --star: #fff; }
+
+  .stars { font-size: 1.05rem; letter-spacing: 4px; color: var(--star); }
+  .text  { margin: 10px 0 0; font-size: .9rem; line-height: 1.5; }
+
+  .who { display: flex; align-items: center; gap: 10px; }
+  .avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--av-bg);
+    color: var(--av-fg);
+    display: grid; place-items: center;
+    font-size: 1.05rem; font-weight: 500;
+    flex: none;
+  }
+  .name { font-weight: 600; font-size: .88rem; }
+
+  /* ---------- stage: one "page" of tilted cards at a time ---------- */
+  .stage { transition: opacity .35s ease; padding-top: 6px; }
+  .stage.out { opacity: 0; }
+
+  /* desktop: 3 scattered cards */
+  .page.p3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 4%;
+    align-items: start;
+  }
+  .page.p3 .card:nth-child(1) { transform: rotate(-3deg);   position: relative; z-index: 2; margin-top: 14px; }
+  .page.p3 .card:nth-child(2) { transform: rotate(2.5deg);  position: relative; z-index: 1; }
+  .page.p3 .card:nth-child(3) {
+    grid-column: 1 / span 2;
+    width: 54%;
+    justify-self: center;
+    margin-top: -22px;
+    transform: rotate(-1.5deg);
+    position: relative;
+    z-index: 3;
+  }
+
+  /* mobile: 2 tilted cards, one under the other */
+  .page.p2 { display: flex; flex-direction: column; gap: 18px; padding: 0 4px; }
+  .page.p2 .card { width: 90%; }
+  .page.p2 .card:nth-child(1) { align-self: flex-start; transform: rotate(-3deg); }
+  .page.p2 .card:nth-child(2) { align-self: flex-end;   transform: rotate(2.5deg); }
+
+  /* ---------- nav ---------- */
+  .nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 22px; }
+  .nav button.arrow {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 2px solid var(--maroon);
+    background: transparent;
+    color: var(--maroon);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .nav button.arrow:hover { background: var(--maroon); color: var(--paper); }
+  .nav button:focus-visible { outline: 3px solid #2a2a2a; outline-offset: 3px; }
+
+  .dots { display: flex; gap: 8px; }
+  .dots button {
+    width: 9px; height: 9px;
+    padding: 0;
+    border-radius: 50%;
+    border: 0;
+    background: #c9b9b5;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+  }
+  .dots button.on { background: var(--maroon); transform: scale(1.3); }
+
+  /* ---------- phones ---------- */
+  @media (max-width: 720px) {
+    body { padding: 22px 12px 32px; }
+    .stamp  { padding: 26px 22px 20px; }
+    .text   { font-size: .86rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <h1 class="title">
+    <span class="script">Customer</span>
+    <span class="caps">REVIEW</span>
+  </h1>
+
+  <section aria-label="Customer reviews">
+    <div class="stage" id="stage" aria-live="polite"></div>
+    <div class="nav">
+      <button class="arrow" id="prev" aria-label="Previous reviews">&#8592;</button>
+      <div class="dots" id="dots"></div>
+      <button class="arrow" id="next" aria-label="Next reviews">&#8594;</button>
+    </div>
+  </section>
+</div>
+
+<script>
+  // ✏️ Apne reviews yahan likho (6 rakho: desktop par 2 slides x 3, mobile par 3 slides x 2).
+  // color: white / pink / maroon
+  const reviews = [
+    { name: "Quinn",    color: "white",  stars: 5, text: "She has such an in-depth understanding of the science behind aesthetics. So sweet and patient, and provides patient-centred care." },
+    { name: "Alex",     color: "pink",   stars: 5, text: "Highly experienced, thorough and pleasant. She explained the procedure in detail and was very gentle. Highly recommend." },
+    { name: "Courtney", color: "maroon", stars: 5, text: "So thorough and skilled, and an all-around delight to be around. She makes the treatments relaxed and easy, right at home." },
+    { name: "Meera",    color: "white",  stars: 5, text: "Quick delivery, neat packaging and the quality is even better than the photos. Will order again." },
+    { name: "Rohan",    color: "pink",   stars: 4, text: "Smooth experience from start to finish. Support answered every question within minutes." },
+    { name: "Sneha",    color: "maroon", stars: 5, text: "Simple, reliable and lovely to look at. Exactly what I was searching for, and worth every rupee." }
+  ];
+
+  const cardHTML = r => `
+    <div class="card">
+      <article class="stamp ${r.color}">
+        <div>
+          <div class="stars" aria-label="${r.stars} out of 5 stars">${"\u2605".repeat(r.stars)}</div>
+          <p class="text">${r.text}</p>
+        </div>
+        <div class="who">
+          <div class="avatar">${r.name[0]}</div>
+          <div class="name">${r.name}</div>
+        </div>
+      </article>
+    </div>`;
+
+  const stage  = document.getElementById("stage");
+  const dotsEl = document.getElementById("dots");
+  const mq = matchMedia("(max-width: 720px)");
+
+  let perPage = mq.matches ? 2 : 3;   // desktop 3, mobile 2
+  let page = 0, timer;
+  const pages = () => Math.ceil(reviews.length / perPage);
+
+  function draw() {
+    const items = reviews.slice(page * perPage, page * perPage + perPage);
+    stage.innerHTML = `<div class="page p${perPage}">${items.map(cardHTML).join("")}</div>`;
+    [...dotsEl.children].forEach((d, i) => d.classList.toggle("on", i === page));
+  }
+
+  function buildDots() {
+    dotsEl.innerHTML = Array.from({ length: pages() }, (_, i) =>
+      `<button aria-label="Go to page ${i + 1}"></button>`).join("");
+    [...dotsEl.children].forEach((d, i) => d.onclick = () => { show(i); restart(); });
+  }
+
+  function show(i) {
+    page = (i + pages()) % pages();
+    stage.classList.add("out");
+    setTimeout(() => { draw(); stage.classList.remove("out"); }, 300);
+  }
+
+  document.getElementById("next").onclick = () => { show(page + 1); restart(); };
+  document.getElementById("prev").onclick = () => { show(page - 1); restart(); };
+
+  /* swipe on touch screens */
+  let x0 = null;
+  stage.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+  stage.addEventListener("touchend", e => {
+    if (x0 !== null) {
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40) show(page + (dx < 0 ? 1 : -1));
+      x0 = null;
+    }
+    restart();
+  }, { passive: true });
+
+  /* auto slide: pauses on hover, off if reduced motion */
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function start()   { if (!reduce) timer = setInterval(() => show(page + 1), 4000); }
+  function stop()    { clearInterval(timer); }
+  function restart() { stop(); start(); }
+  stage.addEventListener("mouseenter", stop);
+  stage.addEventListener("mouseleave", start);
+
+  /* switch between 3-per-page and 2-per-page when the screen size changes */
+  mq.addEventListener("change", () => {
+    perPage = mq.matches ? 2 : 3;
+    page = 0;
+    buildDots();
+    draw();
+  });
+
+  buildDots();
+  draw();
+  start();
+</script>
+</body>
+</html>

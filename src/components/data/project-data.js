@@ -16,6 +16,10 @@ export const projects = [
       "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=800&auto=format&fit=crop"
+    ],
+    videos: [
+      "https://assets.mixkit.co/videos/preview/mixkit-couple-walking-in-a-field-of-flowers-39956-large.mp4",
+      "https://assets.mixkit.co/videos/preview/mixkit-newlyweds-walking-on-the-beach-39961-large.mp4"
     ]
   },
   {
@@ -33,6 +37,9 @@ export const projects = [
       "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=800&auto=format&fit=crop"
+    ],
+    videos: [
+      "https://assets.mixkit.co/videos/preview/mixkit-bride-and-groom-holding-hands-39955-large.mp4"
     ]
   },
   {
@@ -51,6 +58,9 @@ export const projects = [
       "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1478146896981-b80fe463b330?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1510076857177-7470076d4098?q=80&w=800&auto=format&fit=crop"
+    ],
+    videos: [
+      "https://assets.mixkit.co/videos/preview/mixkit-couple-embracing-in-a-field-at-sunset-39953-large.mp4"
     ]
   },
   {
@@ -68,6 +78,9 @@ export const projects = [
       "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?q=80&w=800&auto=format&fit=crop"
+    ],
+    videos: [
+      "https://assets.mixkit.co/videos/preview/mixkit-couple-holding-hands-in-the-forest-39954-large.mp4"
     ]
   },
   {
@@ -86,6 +99,9 @@ export const projects = [
       "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=80&w=800&auto=format&fit=crop"
+    ],
+    videos: [
+      "https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4"
     ]
   },
   {
@@ -103,6 +119,9 @@ export const projects = [
       "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1481253127861-534498168948?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop"
+    ],
+    videos: [
+      "https://assets.mixkit.co/videos/preview/mixkit-timelapse-of-a-city-at-night-42955-large.mp4"
     ]
   },
   {
@@ -121,6 +140,9 @@ export const projects = [
       "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=800&auto=format&fit=crop"
+    ],
+    videos: [
+      "https://assets.mixkit.co/videos/preview/mixkit-woman-posing-in-a-studio-42776-large.mp4"
     ]
   },
   {
@@ -138,6 +160,9 @@ export const projects = [
       "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=800&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800&auto=format&fit=crop"
+    ],
+    videos: [
+      "https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-beach-1174-large.mp4"
     ]
   }
 ];

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stamp Reviews</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Pinyon+Script&family=Bodoni+Moda:wght@400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f3ec;
+    --maroon: #7d1d1d;
+    --card: #fbf8f1;
+    --ink: #2b1a1a;
+    --hole: 7px;      /* perforation radius */
+    --pitch: 22px;    /* distance between holes */
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--paper);
+    display: grid;
+    place-items: center;
+    padding: 24px 16px;
+    font-family: "Lora", Georgia, serif;
+    color: var(--ink);
+  }
+
+  .wrap { width: 100%; max-width: 1000px; }
+
+
+  /* ---------- heading: red script + thin serif caps ---------- */
+  .title { margin: 0 0 44px; line-height: 1; }
+  .title .script {
+    display: block;
+    font-family: "Pinyon Script", "Snell Roundhand", cursive;
+    font-size: clamp(3rem, 9vw, 5.2rem);
+    color: #c4161c;
+    font-weight: 400;
+  }
+  .title .caps {
+    display: block;
+    font-family: "Bodoni Moda", "Didot", "Playfair Display", serif;
+    font-size: clamp(2.4rem, 7.5vw, 4.2rem);
+    font-weight: 400;
+    letter-spacing: .01em;
+    color: #2a2a2a;
+    margin: -.12em 0 0 .9em;
+  }
+
+  /* ---------- the stamp strip ---------- */
+  .strip {
+    position: relative;
+    background: var(--maroon);
+    padding: 30px 22px;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  /* perforated top & bottom edges */
+  .strip::before,
+  .strip::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    height: calc(var(--hole) * 2);
+    background:
+      radial-gradient(circle at 50% 50%, var(--paper) var(--hole), transparent calc(var(--hole) + 0.5px))
+      0 0 / var(--pitch) 100% repeat-x;
+  }
+  .strip::before { top: calc(var(--hole) * -1); }
+  .strip::after  { bottom: calc(var(--hole) * -1); }
+
+  /* perforated left & right edges */
+  .edge {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: calc(var(--hole) * 2);
+    background:
+      radial-gradient(circle at 50% 50%, var(--paper) var(--hole), transparent calc(var(--hole) + 0.5px))
+      0 0 / 100% var(--pitch) repeat-y;
+  }
+  .edge.left  { left: calc(var(--hole) * -1); }
+  .edge.right { right: calc(var(--hole) * -1); }
+
+  /* column of holes between frames */
+  .gap {
+    flex: 0 0 34px;
+    background:
+      radial-gradient(circle at 50% 50%, var(--paper) var(--hole), transparent calc(var(--hole) + 0.5px))
+      50% 0 / 100% var(--pitch) repeat-y;
+  }
+
+  /* ---------- review frames ---------- */
+  .frame {
+    flex: 1;
+    background: var(--card);
+    padding: 26px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px;
+    transition: opacity .35s ease;
+  }
+  .frame.fade { opacity: 0; }
+
+  .stars { color: var(--maroon); letter-spacing: 3px; font-size: 1rem; }
+
+  .text {
+    margin: 14px 0 18px;
+    font-size: 1.02rem;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .text::before { content: "\201C"; }
+  .text::after  { content: "\201D"; }
+
+  .who { display: flex; align-items: center; gap: 10px; }
+  .avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--maroon);
+    color: var(--card);
+    display: grid; place-items: center;
+    font-weight: 600;
+    flex: none;
+  }
+  .name { font-weight: 600; font-size: .95rem; line-height: 1.2; }
+  .role { font-size: .8rem; opacity: .65; }
+
+  /* ---------- handwritten caption + controls ---------- */
+  .foot {
+    margin-top: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .hand {
+    font-family: "Caveat", "Segoe Script", cursive;
+    font-size: 2rem;
+    color: var(--maroon);
+    transform: rotate(-4deg);
+    margin: 0;
+  }
+
+  /* ---------- small screens: still 3 frames, just smaller ---------- */
+  @media (max-width: 720px) {
+    :root { --hole: 5px; --pitch: 16px; }
+    .strip { padding: 22px 14px; }
+    .gap { flex-basis: 20px; }
+    .frame { padding: 14px 10px; min-height: 200px; }
+    .text { font-size: .68rem; line-height: 1.45; margin: 8px 0 10px; }
+    .stars { font-size: .6rem; letter-spacing: 1px; }
+    .avatar { width: 24px; height: 24px; font-size: .7rem; }
+    .name { font-size: .68rem; }
+    .role { font-size: .58rem; }
+    .who { gap: 6px; }
+    .hand { font-size: 1.5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .frame { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <h1 class="title">
+    <span class="script">Customer</span>
+    <span class="caps">REVIEW</span>
+  </h1>
+
+  <div class="strip" id="strip" aria-live="polite">
+    <span class="edge left"></span>
+    <span class="edge right"></span>
+    <!-- frames are filled by JS -->
+  </div>
+
+  <div class="foot">
+    <p class="hand">Happy customers, happy us!</p>
+  </div>
+</div>
+
+<script>
+  // ✏️ Yahan apne 3 reviews likho
+  const reviews = [
+    { name: "Ananya Sharma", role: "Verified buyer", stars: 5, text: "Absolutely loved it. The quality is far better than I expected and it arrived a day early." },
+    { name: "Rohan Mehta",   role: "Verified buyer", stars: 5, text: "Smooth experience from start to finish. Support answered all my questions within minutes." },
+    { name: "Priya Nair",    role: "Designer",       stars: 4, text: "Beautiful finish and great attention to detail. I have already recommended it to friends." }
+  ];
+
+  const strip = document.getElementById("strip");
+
+  function frameHTML(r) {
+    const stars = "\u2605".repeat(r.stars) + "\u2606".repeat(5 - r.stars);
+    return `
+      <article class="frame">
+        <div>
+          <div class="stars" aria-label="${r.stars} out of 5 stars">${stars}</div>
+          <p class="text">${r.text}</p>
+        </div>
+        <div class="who">
+          <div class="avatar">${r.name[0]}</div>
+          <div>
+            <div class="name">${r.name}</div>
+            <div class="role">${r.role}</div>
+          </div>
+        </div>
+      </article>`;
+  }
+
+  strip.insertAdjacentHTML("beforeend", reviews.slice(0, 3).map(frameHTML).join('<div class="gap"></div>'));
+</script>
+</body>
+</html>

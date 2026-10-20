@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@400;500;600&display=swap');
 
 /* ==================== PAGE WRAPPER ==================== */
 .photo-specific-section {
@@ -130,4 +129,136 @@
 @media (max-width: 600px) {
   .specific-photo-grid { column-count: 1; }
   .specific-title { font-size: 32px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==================== HEADER & SPACING FIX ==================== */
+.specific-header {
+  text-align: center;
+  margin-bottom: 20px; /* Pehle 60px tha, isko 20px kiya taaki gap kam ho */
+}
+
+.specific-title {
+  margin-bottom: 5px; /* Title aur Category ke beech ka gap kam kiya */
+}
+
+.specific-category {
+  margin-bottom: 15px; /* Category aur Toggle ke beech ka gap kam kiya */
+}
+
+/* ==================== MEDIA TOGGLE (PERFECT SLIDER) ==================== */
+.media-toggle-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin: 10px auto 20px auto; /* Upar aur niche ka space kam kar diya */
+  padding: 4px;
+  background: #FFFFFF;
+  border-radius: 50px;
+  border: 1px solid #EAEAEA;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  user-select: none;
+}
+
+/* Sliding Background */
+.toggle-slider {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  background: #E8E8F0; 
+  border-radius: 50px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.toggle-slider.right {
+  transform: translateX(100%);
+}
+
+/* The Buttons */
+.media-toggle-btn {
+  position: relative;
+  z-index: 2; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 120px; 
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.media-toggle-btn:focus {
+  outline: none;
+}
+
+.media-toggle-btn svg {
+  stroke: #888;
+  transition: stroke 0.3s ease;
+}
+
+/* Active State */
+.media-toggle-btn.active {
+  color: #1A1D1A;
+}
+.media-toggle-btn.active svg {
+  stroke: #1A1D1A;
+}
+
+/* ==================== MOBILE VIEW ==================== */
+@media (max-width: 600px) {
+  .specific-header {
+    margin-bottom: 15px; /* Mobile par gap aur kam */
+  }
+
+  .specific-category {
+    margin-bottom: 10px;
+  }
+
+  .media-toggle-container {
+    margin: 5px auto 15px auto; /* Mobile par toggle ke niche ka space bahut kam kiya */
+  }
+
+  .media-toggle-btn {
+    width: 64px; 
+    height: 40px;
+    padding: 0;
+  }
+
+  .btn-text {
+    display: none; 
+  }
+
+  .media-toggle-btn svg {
+    width: 20px;
+    height: 20px;
+  }
 }

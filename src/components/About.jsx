@@ -26,9 +26,7 @@ const About = () => {
             From cinematic weddings and candid celebrations to creative portraits and fashion shoots, we bring every story to life with creativity, passion, and an eye for detail.
           </p>
           
-          <p className="about-description">
-            We strive to create photographs that feel authentic, look beautiful, and remain unforgettable for years to come.
-          </p>
+         
 
           {/* Signature Line */}
           <p className="about-signature">

@@ -4,14 +4,15 @@ import HeroVideo from '../components/HeroVideo';
 import About from '../components/About';
 import Stats from '../components/Stats';
 import Service from '../components/Service';
-import BestWork from '../components/BestWork';
+import BestWork    from '../components/BestWork';
 import FAQ from '../components/FAQ';
 import Review from '../components/Review';
 import FollowUs from '../components/FollowUs';
 import Showcase from '../components/Showcase';
 import ContactCTA from '../components/ContactCTA';
-
+import FilmStripReview from '../components/FilmStripReview';
 import FusionProduction from '../components/FusionProduction';
+import FilmRollReviews from '../components/FilmRollReviews';
 
 const Home = () => {
   return (
@@ -21,11 +22,15 @@ const Home = () => {
 
       <Service />
       <BestWork />
-      <Showcase />
+
       <About />
       <Stats />
+        <Showcase />
+     
       <FAQ/>
-      <Review />
+      <FilmStripReview/>
+      <FilmRollReviews/>
+        <Review />
       <ContactCTA/>
       <FollowUs />
     </>
