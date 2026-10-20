@@ -21,7 +21,8 @@ const FAQ_DATA = [
 ];
 
 export default function FAQ() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  // Changed from 0 to -1 so no item is open by default
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? -1 : index);
