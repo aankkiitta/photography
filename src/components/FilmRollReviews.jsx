@@ -32,6 +32,8 @@ export default function FilmRollReviews({
   const [openIdx, setOpenIdx] = useState(null);
   const [ratio, setRatio] = useState(1);
   const [overflowing, setOverflowing] = useState({});
+  const [mobile, setMobile] = useState(false);
+  const [panel, setPanel] = useState(null); // mobile: index of the review shown in the reading panel
 
   // Duplicate the list so the CSS loop is seamless
   const frames = [...reviews, ...reviews];
@@ -99,7 +101,28 @@ export default function FilmRollReviews({
     return () => clearTimeout(id);
   }, [openIdx, autoCloseMs]);
 
-  const toggle = (i) => setOpenIdx((cur) => (cur === i ? null : i));
+  // Mobile uses a reading panel under the roll instead of growing the film
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 620px)");
+    const sync = () => {
+      setMobile(mq.matches);
+      setOpenIdx(null);
+      setPanel(null);
+    };
+    setMobile(mq.matches);
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const toggle = (i) => {
+    if (mobile) {
+      const k = i % reviews.length;
+      setPanel((cur) => (cur === k ? null : k));
+    } else {
+      setOpenIdx((cur) => (cur === i ? null : i));
+    }
+  };
+  const shown = panel !== null ? reviews[panel] : null;
 
   return (
     <div className="fr" data-theme={theme}>
@@ -110,7 +133,7 @@ export default function FilmRollReviews({
         <div className="fr-film">
           <div className={`fr-strip${openIdx !== null ? " fr-hold" : ""}`} ref={stripRef}>
             {frames.map((r, i) => {
-              const open = openIdx === i;
+              const open = !mobile && openIdx === i;
               return (
                 <div className={`fr-frame${open ? " fr-open" : ""}`} data-i={i} key={i}>
                   <div className="fr-card">
@@ -124,7 +147,7 @@ export default function FilmRollReviews({
                         className="fr-more"
                         type="button"
                         hidden={!open && !overflowing[i]}
-                        aria-expanded={open}
+                        aria-expanded={open || (mobile && panel === i % reviews.length)}
                         onClick={() => toggle(i)}
                       >
                         {open ? "Show less" : "Read more"}
@@ -168,6 +191,23 @@ export default function FilmRollReviews({
           <div className="fr-gsn">GSN</div>
         </div>
       </div>
+
+      {mobile && shown && (
+        <div className="fr-panel" role="dialog" aria-label="Full review" key={panel}>
+          <button className="fr-panel-x" type="button" aria-label="Close review" onClick={() => setPanel(null)}>
+            ×
+          </button>
+          <div className="fr-stars">
+            {"★".repeat(shown.s)}
+            {"☆".repeat(5 - shown.s)}
+          </div>
+          <p className="fr-panel-text">“{shown.t}”</p>
+          <div className="fr-who">
+            <span className="fr-av">{shown.n[0]}</span>
+            {shown.n}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

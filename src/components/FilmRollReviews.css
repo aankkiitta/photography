@@ -59,7 +59,7 @@
 /* ---------- mobile ---------- */
 @media (max-width:620px){
   .fr{gap:20px}
-  .fr .fr-stage{--bs:.78;--off:calc(var(--cw) / -2);--bcw:234px;--bct:30px;--bft:18px;--bfh:182px;--fw:calc((100cqw - (var(--bcw) / 2 - 3px)) / 1.5);--pv:26px;--sp:12px;--fs:14px;--lines:2;height:max(210px,calc(var(--ft) + var(--fh) + 18px))}
+  .fr .fr-stage{--bs:.78;--off:calc(var(--cw) / -2);--bcw:234px;--bct:30px;--bft:18px;--bfh:182px;--fw:max(150px,calc((100cqw - (var(--bcw) / 2 - 3px)) / 1.5));--pv:26px;--sp:12px;--fs:14px;--lines:2;height:max(210px,calc(var(--ft) + var(--fh) + 18px))}
   .fr .fr-strip::before,.fr .fr-strip::after{background:repeating-linear-gradient(90deg,transparent 0 7px,#f3efe6 7px 17px,transparent 17px 27px)}
   .fr .fr-strip::before{top:7px}.fr .fr-strip::after{bottom:7px}
   .fr .fr-card{padding:8px 12px}
@@ -67,4 +67,15 @@
   .fr .fr-who{font-size:13px}
   .fr .fr-num{display:none}
 }
+/* ---------- mobile reading panel ---------- */
+.fr .fr-panel{position:relative;box-sizing:border-box;width:calc(100% - 32px);max-width:520px;padding:16px 18px 14px;border-radius:10px;color:#3b3226;
+  background:radial-gradient(circle at 30% 20%,#f3ead7,#e2d5ba);box-shadow:inset 0 0 22px rgba(90,60,20,.35),0 8px 20px rgba(0,0,0,.35);
+  font-size:15px;line-height:1.5;animation:fr-rise .25s ease-out}
+.fr .fr-panel .fr-stars{font-size:16px;padding-right:36px}
+.fr .fr-panel-text{margin:6px 0 12px;font-style:italic;max-height:42vh;overflow-y:auto}
+.fr .fr-panel-x{position:absolute;top:6px;right:8px;width:34px;height:34px;border:0;background:none;font:400 26px/1 Helvetica,Arial,sans-serif;color:#8a5a12;cursor:pointer}
+.fr .fr-panel-x:focus-visible{outline:2px solid #8a5a12;outline-offset:-2px;border-radius:6px}
+@keyframes fr-rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){.fr .fr-panel{animation:none}}
 @media (prefers-reduced-motion:reduce){.fr .fr-strip,.fr .fr-glass::after{animation:none}.fr .fr-film{overflow-x:auto}}

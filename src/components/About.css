@@ -116,26 +116,14 @@
     min-height: auto;
   }
 
+  /* HIDES THE IMAGE ON MOBILE */
   .about-image-wrapper {
-    width: 100%;
-    justify-content: center; 
-    margin: 0;
-    padding: 0;
-    order: 1; 
-  }
-
-  /* MOBILE IMAGE FIX: Upar niche se gap nahi aayega */
-  .about-transparent-img {
-    width: 100%;
-    height: 55vh; /* Screen ka 55% hissa */
-    object-fit: cover; /* Gap ko cover karega */
-    object-position: center top; 
-    transform: none; 
+    display: none; 
   }
 
   .about-content-wrapper {
     width: 100%;
-    padding: 30px 20px 40px 20px; 
+    padding: 60px 20px; /* Added a bit more top/bottom padding since image is gone */
     justify-content: center;
     text-align: center; 
     order: 2; 
