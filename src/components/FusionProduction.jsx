@@ -326,7 +326,10 @@ export default function FusionProduction() {
             </div>
           </div>
 
-          
+          <div className="where">
+            <i />
+            <span ref={whereRef}>Rotate</span>
+          </div>
         </div>
       </section>
 
