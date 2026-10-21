@@ -1,0 +1,257 @@
+/* =========================================
+   MAIN SECTION & BACKGROUND
+   ========================================= */
+.insta-section {
+  width: 100%;
+  background-color: #f7f4ed;
+  /* Optional: Add your brand's background pattern here if you have one */
+  padding: 60px 0 40px 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================================
+   HEADER STYLES
+   ========================================= */
+.insta-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.insta-title {
+  font-family: "Playfair Display", "Bodoni Moda", Georgia, serif; /* Elegant font */
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #1A1D1A;
+  text-transform: uppercase;
+  margin: 0 0 12px 0;
+}
+
+.insta-subtitle {
+  font-family: "Montserrat", "Inter", sans-serif;
+  font-size: 14px;
+  color: #C09B6E; /* Gold/Maroon accent color */
+  margin: 0;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* =========================================
+   DESKTOP AUTOMATIC SLIDER
+   ========================================= */
+.insta-desktop-wrapper {
+  width: 100%;
+  overflow: hidden;
+  display: block;
+}
+
+.insta-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  padding: 10px;
+  animation: scroll-reels 35s linear infinite;
+}
+
+.insta-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-reels {
+  0% { transform: translateX(0); }
+  /* Adjusting for the gap in the duplicated array */
+  100% { transform: translateX(calc(-50% - 12px)); } 
+}
+
+/* =========================================
+   REEL CARD BASE STYLES (Frame & Image)
+   ========================================= */
+.reel-card {
+  position: relative;
+  width: 280px;
+  height: 480px;
+  flex: 0 0 auto;
+  /* The Thick White Frame */
+  background: #ffffff;
+  padding: 10px; 
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+
+.reel-card:hover {
+  transform: translateY(-4px);
+}
+
+.reel-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #111;
+}
+
+.reel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.reel-card:hover .reel-image {
+  transform: scale(1.03);
+}
+
+/* =========================================
+   INSTAGRAM ICON
+   ========================================= */
+.insta-icon {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+.insta-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* =========================================
+   EXACT PLAY BUTTON OVERLAY
+   ========================================= */
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.reel-card:hover .play-overlay {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.play-btn-circle {
+  width: 64px;
+  height: 64px;
+  background: rgba(140, 140, 140, 0.6); /* Greyish transparent */
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.2s ease, background 0.2s;
+}
+
+.reel-card:hover .play-btn-circle {
+  background: rgba(160, 160, 160, 0.8);
+  transform: scale(1.1);
+}
+
+.play-triangle {
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 20px solid white;
+  margin-left: 6px; /* Center optically */
+}
+
+/* =========================================
+   MOBILE SNAP SLIDER (HIDDEN ON DESKTOP)
+   ========================================= */
+.insta-mobile-wrapper {
+  display: none;
+  width: 100%;
+  position: relative;
+}
+
+.insta-mobile-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 10px 20px 20px 20px; /* Extra padding for shadows */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.insta-mobile-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.insta-mobile-scroll .reel-card {
+  scroll-snap-align: center;
+  width: 260px;
+  height: 450px;
+}
+
+/* =========================================
+   PAGINATION DOTS
+   ========================================= */
+.insta-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.insta-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #d8cfc4;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.insta-dot.active {
+  background-color: #5e0f17; /* Maroon brand color */
+  transform: scale(1.3);
+}
+
+/* =========================================
+   RESPONSIVE SWITCH (Mobile vs Desktop)
+   ========================================= */
+@media (max-width: 900px) {
+  .insta-section {
+    padding: 40px 0 30px 0;
+  }
+  
+  .insta-desktop-wrapper {
+    display: none;
+  }
+  
+  .insta-mobile-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .insta-header {
+    margin-bottom: 25px;
+  }
+}

@@ -1,9 +1,15 @@
-
-/* ==================== SCENE & CAMERA ==================== */
+/* ==================== GLOBAL ==================== */
 
 * {
   box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: auto;
+  overscroll-behavior-y: none;
+}
+
+/* ==================== SCENE & CAMERA ==================== */
 
 .scene {
   position: relative;
@@ -31,6 +37,7 @@
   overflow: hidden;
   pointer-events: none;
   opacity: 1;
+  will-change: opacity;
   --scroll-text-color: #524f4a;
 }
 
@@ -63,7 +70,6 @@
   white-space: nowrap;
 
   color: var(--scroll-text-color);
-  transition: color 80ms linear;
 }
 
 .text-fusion-left {
@@ -83,6 +89,7 @@
   transform-origin: center center;
   z-index: 2;
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 .cam svg {
@@ -90,10 +97,7 @@
   width: 100%;
   height: auto;
   overflow: visible;
-
-  filter: drop-shadow(
-    0 30px 40px rgba(0, 0, 0, 0.2)
-  );
+  /* drop-shadow filter removed: it was re-rendered every frame */
 }
 
 .blade {
@@ -112,6 +116,7 @@
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
+  will-change: opacity;
 
   background: radial-gradient(
     90% 80% at 50% 50%,
@@ -133,6 +138,7 @@
   z-index: 1;
 
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 .frame img {
@@ -141,8 +147,17 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* blur/brightness filter removed: replaced by .shade overlay */
+}
 
-  filter: brightness(0.1) blur(6px);
+/* dark overlay that fades out = cheap "exposure" effect */
+.frame .shade {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0.9;
+  pointer-events: none;
+  will-change: opacity;
 }
 
 .frame .base {
@@ -205,6 +220,7 @@
   );
 
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 .curtain.l {
@@ -245,35 +261,6 @@
   margin-top: 14px;
   font-size: 15px;
   opacity: 0.9;
-}
-
-/* ==================== SCROLL STATUS ==================== */
-
-.where {
-  position: absolute;
-  left: 6vw;
-  top: 86px;
-  z-index: 6;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  color: #fff;
-  font-size: 13px;
-  font-weight: 600;
-
-  mix-blend-mode: difference;
-}
-
-.where i {
-  display: block;
-  width: 8px;
-  height: 8px;
-  flex: 0 0 8px;
-
-  border-radius: 50%;
-  background: #00a6b7;
 }
 
 /* ==================== FILM STRIP ==================== */
@@ -328,6 +315,7 @@
 
   background: #1a1815;
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 .film::before,
@@ -381,6 +369,50 @@
   color: #e0381d;
 }
 
+/* ==================== PRODUCTION - SEPARATE TEXT ==================== */
+
+.text-production-wrapper {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  pointer-events: none;
+}
+
+.text-production {
+  margin: 0;
+  padding: 0;
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(24px, 5vw, 80px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.35vw;
+  color: #514e49;
+  text-transform: uppercase;
+}
+
+/* ==================== FILM ROLL (mobile only) ==================== */
+
+.roll {
+  display: none;
+  position: absolute;
+  left: -10vw;
+  top: 4vh;
+  width: 120vw;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.roll svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
 /* ==================== TABLET ==================== */
 
 @media (max-width: 1024px) {
@@ -411,6 +443,15 @@
 /* ==================== MOBILE ==================== */
 
 @media (max-width: 760px) {
+  .roll {
+    display: block;
+  }
+
+  .bg-text {
+    align-items: flex-start;
+    padding-top: 30vh;
+  }
+
   .scene {
     height: 440vh;
   }
@@ -432,11 +473,6 @@
 
   .cam {
     width: min(84vw, 400px);
-  }
-
-  .where {
-    top: 68px;
-    left: 5vw;
   }
 
   .frame {
@@ -468,6 +504,15 @@
   .film figure {
     width: 78vw;
   }
+
+  .text-production-wrapper {
+    top: 82%;
+  }
+
+  .text-production {
+    font-size: 7vw;
+    letter-spacing: 0.5vw;
+  }
 }
 
 /* ==================== SMALL PHONES ==================== */
@@ -489,57 +534,5 @@
 
   .film figure {
     width: 84vw;
-  }
-}
-
-/* ==================== REDUCED MOTION ==================== */
-
-@media (prefers-reduced-motion: reduce) {
-  .text-fusion-left,
-  .text-fusion-right {
-    transition: none;
-  }
-}
-
-
-
-
-
-
-
-
-/* PRODUCTION - SEPARATE TEXT */
-.text-production-wrapper {
-  position: absolute;
-  top: 85%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  z-index: 1;
-  text-align: center;
-  pointer-events: none;
-}
-
-.text-production {
-  margin: 0;
-  padding: 0;
-  font-family: Impact, "Arial Narrow", sans-serif;
-  font-size: clamp(24px, 5vw, 80px);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: 0.35vw;
-  color: #514e49;
-  text-transform: uppercase;
-}
-
-/* MOBILE */
-@media (max-width: 760px) {
-  .text-production-wrapper {
-    top: 82%;
-  }
-
-  .text-production {
-    font-size: 7vw;
-    letter-spacing: 0.5vw;
   }
 }

@@ -14,6 +14,7 @@ import FilmStripReview from '../components/FilmStripReview';
 import FusionProduction from '../components/FusionProduction';
 import FilmRollReviews from '../components/FilmRollReviews';
 import CustomerReviews from '../components/CustomerReviews';
+import InstagramReels from '../components/InstagramReels';
 const Home = () => {
   return (
     <>
@@ -29,7 +30,7 @@ const Home = () => {
      
       <FAQ/>
       <CustomerReviews/>
-
+<InstagramReels/>
       <ContactCTA/>
       <FollowUs />
     </>
